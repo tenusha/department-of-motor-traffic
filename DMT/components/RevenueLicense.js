@@ -64,7 +64,7 @@ export default class RevenueLicense extends React.Component {
             </> : null
 
         return (
-            <>
+            <View>
                 <AppHeader {...this.props} title={'Revenue License'}/>
                 <CustomTextField style={styles.materialMessageTextbox}
                                  placeholder={'e.g: KA-1010, 15-3456'}
@@ -73,7 +73,7 @@ export default class RevenueLicense extends React.Component {
                 <CustomButton style={styles.materialButtonPrimary} title={'Get Status'}
                               handleClick={this.handleSubmit}/>
                 {data}
-            </>
+            </View>
         );
     }
 }
