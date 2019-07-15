@@ -9,7 +9,7 @@ router.get('/:vehicleNo', async (req, res) => {
         license = {
             vehicle:vehicle,
             License_Issued_Date: "2018-12-01",
-            Vehicle_Reg_No: "64-8693",
+            Vehicle_Reg_No: vehicle,
             License_Expiry_Date: "2019-11-30",
             License_No: "4471876"
         }
