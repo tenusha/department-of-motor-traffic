@@ -61,15 +61,3 @@ const SwitchNavigator = createSwitchNavigator({
 );
 
 const AppContainer = createAppContainer(SwitchNavigator)
-
-
-// initialRouteName: 'Home',
-//     defaultNavigationOptions: {
-//     headerStyle: {
-//         backgroundColor: '#800080',
-//     },
-//     headerTintColor: '#fff',
-//         headerTitleStyle: {
-//         fontWeight: 'bold',
-//     }
-// }
