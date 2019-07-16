@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, ToastAndroid, View} from 'react-native';
+import {Image, StyleSheet, Text, ToastAndroid, View} from 'react-native';
 import AppHeader from "./commons/AppHeader";
-import {Card, Icon} from "react-native-elements";
+import {Card} from "react-native-elements";
 import CustomButton from "./commons/CustomButton"
 import CustomTextField from "./commons/CustomTextField"
 import LoadingScreen from "./commons/LoadingScreen"
@@ -11,7 +11,7 @@ export default class RevenueLicense extends React.Component {
     static navigationOptions = {
         title: 'Revenue License Status',
         drawerIcon: (
-            <Icon name='event'/>
+            <Image source={require('../assets/icons/revenue_license.png')} style={{width: 24, height: 24}}/>
         )
     };
 

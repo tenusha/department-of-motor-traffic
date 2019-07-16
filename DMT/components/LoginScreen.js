@@ -1,13 +1,14 @@
 import React from 'react';
-import {AsyncStorage, Text} from 'react-native';
+import {AsyncStorage, Image, Text} from 'react-native';
 import {Button} from "react-native-elements";
 
 export default class LoginScreen extends React.Component {
     static navigationOptions = {
-        title: 'My Vehicles'
+        title: 'Login',
+        drawerIcon: (
+            <Image source={require('../assets/icons/login_black.png')} style={{width: 24, height: 24}}/>
+        )
     };
-
-    state = {}
 
     componentDidMount() {
         this.setUser()
@@ -37,9 +38,21 @@ export default class LoginScreen extends React.Component {
                         backgroundColor: '#e30047'
                     }}
                     onPress={() => {
-                        this.props.navigation.navigate("App")
+                        this.props.navigation.navigate("Reload")
                     }}
                     title='go back'/>
+                <Button
+                    buttonStyle={{
+                        borderRadius: 0,
+                        marginLeft: 0,
+                        marginRight: 0,
+                        marginBottom: 0,
+                        backgroundColor: '#ff0000'
+                    }}
+                    onPress={() => {
+                        this.props.navigation.navigate("Reload")
+                    }}
+                    title='login'/>
             </>
         );
     }

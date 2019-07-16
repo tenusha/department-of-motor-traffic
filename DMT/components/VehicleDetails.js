@@ -1,13 +1,12 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Image, Text} from 'react-native';
 import AppHeader from "./commons/AppHeader";
-import {Icon} from "react-native-elements";
 
 export default class VehicleDetails extends React.Component {
     static navigationOptions = {
         title: 'Vehicle Details',
-        drawerIcon:(
-            <Icon name='info'/>
+        drawerIcon: (
+            <Image source={require('../assets/icons/vehicle_info.png')} style={{width: 24, height: 24}}/>
         )
     };
 

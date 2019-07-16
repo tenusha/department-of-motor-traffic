@@ -5,6 +5,8 @@ import OngoingNumbers from './components/OngoingNumbers'
 import VehicleDetails from './components/VehicleDetails'
 import RevenueLicense from './components/RevenueLicense'
 import MyVehicles from './components/MyVehicles'
+import Logout from './components/actions/Logout'
+import Reload from './components/commons/Reload'
 
 import {ScrollView} from 'react-native';
 import {Image} from "react-native-elements";
@@ -21,13 +23,13 @@ export default class App extends React.Component {
 }
 
 const customDrawerContent = (props) => (
-    <ScrollView>
-        <Image
-            source={require('./assets/drawer_image.png')}
-            style={{width: "100%", height: 150}}
-        />
-        <DrawerItems {...props}/>
-    </ScrollView>
+        <ScrollView>
+            <Image
+                source={require('./assets/drawer_image.png')}
+                style={{width: "100%", height: 150}}
+            />
+            <DrawerItems {...props}/>
+        </ScrollView>
 )
 
 const DrawerNavigator = createDrawerNavigator({
@@ -35,7 +37,25 @@ const DrawerNavigator = createDrawerNavigator({
         OngoingNumbers: {screen: OngoingNumbers},
         VehicleDetails: {screen: VehicleDetails},
         RevenueLicense: {screen: RevenueLicense},
+        Login: {screen: LoginScreen}
+    },
+    {
+        headerMode: 'none',
+        navigationOptions: {
+            headerVisible: false,
+        },
+        initialRouteName: 'Home',
+        contentComponent: customDrawerContent,
+    }
+);
+
+const DrawerNavigatorLoginUsers = createDrawerNavigator({
+        Home: {screen: HomeScreen},
+        OngoingNumbers: {screen: OngoingNumbers},
+        VehicleDetails: {screen: VehicleDetails},
+        RevenueLicense: {screen: RevenueLicense},
         MyVehicles: {screen: MyVehicles},
+        Logout: {screen: Logout}
     },
     {
         headerMode: 'none',
@@ -48,8 +68,9 @@ const DrawerNavigator = createDrawerNavigator({
 );
 
 const SwitchNavigator = createSwitchNavigator({
-        LoginScreen: {screen: LoginScreen},
-        App: DrawerNavigator
+        Reload: {screen: Reload},
+        App: DrawerNavigator,
+        UserApp: DrawerNavigatorLoginUsers
     },
     {
         headerMode: 'none',

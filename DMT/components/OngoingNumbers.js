@@ -1,13 +1,12 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Image, Text} from 'react-native';
 import AppHeader from "./commons/AppHeader";
-import {Icon} from "react-native-elements";
 
 export default class OngoingNumbers extends React.Component {
     static navigationOptions = {
         title: 'Ongoing Numbers',
-        drawerIcon:(
-            <Icon name='update'/>
+        drawerIcon: (
+            <Image source={require('../assets/icons/ongoing_numbers.png')} style={{width: 24, height: 24}}/>
         )
     };
 

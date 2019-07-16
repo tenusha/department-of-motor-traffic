@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Text} from 'react-native';
+import {AsyncStorage, Image, ScrollView, Text} from 'react-native';
 import {Button, Card, Icon} from "react-native-elements";
 import Footer from './commons/Footer'
 import RevenueLicense from './RevenueLicense'
@@ -8,10 +8,18 @@ import AppHeader from "./commons/AppHeader";
 export default class HomeScreen extends React.Component {
     static navigationOptions = {
         title: "Home",
-        drawerIcon:(
-            <Icon name='home'/>
+        drawerIcon: (
+            <Image source={require('../assets/icons/home.png')} style={{width: 24, height: 24}}/>
         )
     };
+
+    componentDidMount() {
+        AsyncStorage.getItem("dmt_user").then(user => {
+            if (user) {
+                this.props.navigation.navigate("UserApp")
+            }
+        })
+    }
 
     render() {
         const {navigate} = this.props.navigation;

@@ -1,17 +1,18 @@
 import React from 'react';
-import {AsyncStorage, ScrollView, Text} from 'react-native';
+import {AsyncStorage, Image, ScrollView, Text} from 'react-native';
 import AppHeader from "./commons/AppHeader";
 import {Button, Icon} from "react-native-elements";
 
 export default class MyVehicles extends React.Component {
     static navigationOptions = {
         title: 'My Vehicles',
-        drawerIcon:(
-            <Icon name='person'/>
+        drawerIcon: (
+            <Image source={require('../assets/icons/my_vehicle.png')} style={{width: 24, height: 24}}/>
         )
     };
 
     state = {
+        user: '',
         vehicles: ["asasas", "asasas", "asasas", "asasas", "asasas", "asasas", "asasas", "asasas", "asasas", "asasas"]
     }
 
