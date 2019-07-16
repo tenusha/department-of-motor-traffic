@@ -22,6 +22,7 @@ export default class CustomTextField extends React.Component {
                 </Text>
                 <TextInput
                     placeholder={this.props.placeholder}
+                    value={this.props.value}
                     style={[
                         styles.inputStyle,
                         {

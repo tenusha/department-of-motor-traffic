@@ -16,6 +16,10 @@ export function removeUserVehicle(uid, vno) {
     return callDelete(config.dmtUrl + '/users/' + uid + "/vehicles/" + vno);
 }
 
+export function addUserVehicle(uid,body) {
+    return callPost(config.dmtUrl + '/users/' + uid + "/vehicles/", body);
+}
+
 const callGet = (url) => {
     return fetch(url, {
         method: 'GET',
@@ -24,6 +28,14 @@ const callGet = (url) => {
             'Authorization': getToken(),
             "X-Requested-With": "lk.icta.mobile.apps.dmt"
         })
+    }).then(handleres);
+}
+
+const callPost = (url, body) => {
+    return fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: { "Content-Type": "application/json" }
     }).then(handleres);
 }
 

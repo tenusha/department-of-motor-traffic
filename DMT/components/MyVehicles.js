@@ -2,9 +2,9 @@ import React from 'react';
 import {AsyncStorage, Image, ScrollView, StyleSheet, Text, ToastAndroid, View} from 'react-native';
 import {Button, Card} from "react-native-elements"
 import AppHeader from "./commons/AppHeader";
-import {getRevenueLicenseDetails, getUserVehicles, removeUserVehicle} from "./functions/Services";
+import {addUserVehicle, getRevenueLicenseDetails, getUserVehicles, removeUserVehicle} from "./functions/Services";
 import LoadingScreen from "./commons/LoadingScreen";
-import AddVehicle from "./sections/AddVehicle";
+import CustomTextField from "./commons/CustomTextField"
 
 export default class MyVehicles extends React.Component {
     static navigationOptions = {
@@ -16,10 +16,10 @@ export default class MyVehicles extends React.Component {
 
     state = {
         loading: false,
-        showAddVehicle: false,
         user: '',
         vehicles: [],
-        displayVehicles: []
+        displayVehicles: [],
+        vehicleNo: ''
     }
 
     componentDidMount() {
@@ -30,10 +30,44 @@ export default class MyVehicles extends React.Component {
     }
 
     handleModalClose = () => {
-        this.setState({loading: false, showAddVehicle: false})
+        this.setState({loading: false})
+    }
+
+    handleChange = (name, value) => {
+        this.setState({[name]: value})
     }
 
     handleSubmit = async () => {
+        this.setState({loading: true})
+        if (this.state.vehicleNo) {
+            await addUserVehicle(this.state.user.id, {vehicle: this.state.vehicleNo}).then(data => {
+                ToastAndroid.showWithGravityAndOffset(
+                    'new vehicle added!',
+                    ToastAndroid.SHORT,
+                    ToastAndroid.BOTTOM,
+                    25,
+                    100,
+                );
+                this.updateData()
+            }).catch(err => {
+                ToastAndroid.showWithGravityAndOffset(
+                    'server error!',
+                    ToastAndroid.LONG,
+                    ToastAndroid.BOTTOM,
+                    25,
+                    100,
+                );
+            })
+        } else {
+            ToastAndroid.showWithGravityAndOffset(
+                'please add a valid vehicle number!',
+                ToastAndroid.SHORT,
+                ToastAndroid.BOTTOM,
+                25,
+                100,
+            );
+        }
+        this.setState({vehicleNo: '', loading: false})
     }
 
     updateData = async () => {
@@ -101,10 +135,15 @@ export default class MyVehicles extends React.Component {
         return (
             <ScrollView>
                 <AppHeader {...this.props} title={'My Vehicles'}/>
+                <CustomTextField style={styles.materialMessageTextbox}
+                                 placeholder={'e.g: KA-1010, 15-3456'}
+                                 label={'Vehicle Number :'}
+                                 value={this.state.vehicleNo}
+                                 handleChange={(value) => this.handleChange('vehicleNo', value)}/>
                 <Button
                     title="Add new vehicle"
                     type="outline"
-                    onPress={() => this.setState({showAddVehicle: true})}
+                    onPress={this.handleSubmit}
                     containerStyle={{width: 150, height: 36, marginTop: 20, marginLeft: 200}}
                 />
                 <View
@@ -145,10 +184,16 @@ export default class MyVehicles extends React.Component {
                 </Card>
                 }
                 <View style={{paddingTop: 30}}/>
-                <AddVehicle handleSubmit={this.handleSubmit} showAddVehicle={this.state.showAddVehicle}
-                            handleClose={this.handleModalClose}/>
                 <LoadingScreen loading={this.state.loading} handleClose={this.handleModalClose}/>
             </ScrollView>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    materialMessageTextbox: {
+        left: 10,
+        width: 340,
+        height: 90,
+    }
+});

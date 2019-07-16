@@ -48,8 +48,8 @@ export default class RevenueLicense extends React.Component {
                         100,
                     );
                 })
-            this.setState({loading: false})
-        }else{
+            this.setState({loading: false, vehicleNo: ''})
+        } else {
             ToastAndroid.showWithGravityAndOffset(
                 'please add a valid vehicle number!',
                 ToastAndroid.SHORT,
@@ -93,6 +93,7 @@ export default class RevenueLicense extends React.Component {
                 <CustomTextField style={styles.materialMessageTextbox}
                                  placeholder={'e.g: KA-1010, 15-3456'}
                                  label={'Vehicle Number :'}
+                                 value={this.state.vehicleNo}
                                  handleChange={(value) => this.handleChange('vehicleNo', value)}/>
                 <CustomButton style={styles.materialButtonPrimary} title={'Get Status'}
                               handleClick={this.handleSubmit}/>
