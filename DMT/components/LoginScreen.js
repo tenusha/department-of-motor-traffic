@@ -1,8 +1,6 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import AppHeader from "./commons/AppHeader";
-import {AsyncStorage} from 'react-native';
-import {Button, Icon} from "react-native-elements";
+import {AsyncStorage, Text} from 'react-native';
+import {Button} from "react-native-elements";
 
 export default class LoginScreen extends React.Component {
     static navigationOptions = {

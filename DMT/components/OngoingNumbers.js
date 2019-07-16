@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Text} from 'react-native';
 import AppHeader from "./commons/AppHeader";
 import {Icon} from "react-native-elements";
 

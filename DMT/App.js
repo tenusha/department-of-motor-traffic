@@ -6,10 +6,9 @@ import VehicleDetails from './components/VehicleDetails'
 import RevenueLicense from './components/RevenueLicense'
 import MyVehicles from './components/MyVehicles'
 
-import {AsyncStorage} from 'react-native';
-import {View, Text, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import {Image} from "react-native-elements";
-import {createDrawerNavigator, createAppContainer, createSwitchNavigator, DrawerItems} from 'react-navigation'
+import {createAppContainer, createDrawerNavigator, createSwitchNavigator, DrawerItems} from 'react-navigation'
 
 
 export default class App extends React.Component {

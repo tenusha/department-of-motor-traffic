@@ -1,8 +1,7 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {AsyncStorage, ScrollView, Text} from 'react-native';
 import AppHeader from "./commons/AppHeader";
-import {AsyncStorage} from 'react-native';
-import {Button, Card, Icon} from "react-native-elements";
+import {Button, Icon} from "react-native-elements";
 
 export default class MyVehicles extends React.Component {
     static navigationOptions = {

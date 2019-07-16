@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, ScrollView} from 'react-native';
+import {ScrollView, Text} from 'react-native';
 import {Button, Card, Icon} from "react-native-elements";
 import Footer from './commons/Footer'
 import RevenueLicense from './RevenueLicense'

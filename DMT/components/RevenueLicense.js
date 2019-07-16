@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, StyleSheet, Text, ToastAndroid} from 'react-native';
+import {StyleSheet, Text, ToastAndroid, View} from 'react-native';
 import AppHeader from "./commons/AppHeader";
-import {Button, Card, Icon, Input} from "react-native-elements";
+import {Card, Icon} from "react-native-elements";
 import CustomButton from "./commons/CustomButton"
 import CustomTextField from "./commons/CustomTextField"
 import LoadingScreen from "./commons/LoadingScreen"
@@ -41,7 +41,6 @@ export default class RevenueLicense extends React.Component {
                     this.setState({...data})
                 }).catch(err => {
                     this.setState({loading: false})
-                    console.log(err)
                     ToastAndroid.showWithGravityAndOffset(
                         'server error!',
                         ToastAndroid.LONG,

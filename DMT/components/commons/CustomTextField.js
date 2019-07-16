@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, TextInput} from 'react-native';
+import {StyleSheet, Text, TextInput, View} from 'react-native';
 
 export default class CustomTextField extends React.Component {
 

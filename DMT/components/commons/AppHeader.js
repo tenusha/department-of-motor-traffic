@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Icon, Header} from "react-native-elements";
+import {Button, Header, Icon} from "react-native-elements";
 
 export default class AppHeader extends React.Component {
 
