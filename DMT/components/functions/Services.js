@@ -5,7 +5,7 @@ function getToken() {
 }
 
 export function getRevenueLicenseDetails(vehicle) {
-    return callGet(config.dmtUrl + '/vehicle/revenueLicense/' + vehicle);
+    return callGet(config.dmtUrl + '/revenueLicense/' + vehicle);
 }
 
 const callGet = (url) => {

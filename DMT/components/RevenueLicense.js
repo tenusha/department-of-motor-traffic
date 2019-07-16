@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, ToastAndroid} from 'react-native';
 import AppHeader from "./commons/AppHeader";
 import {Button, Card, Icon, Input} from "react-native-elements";
 import CustomButton from "./commons/CustomButton"
 import CustomTextField from "./commons/CustomTextField"
+import LoadingScreen from "./commons/LoadingScreen"
 import {getRevenueLicenseDetails} from "./functions/Services"
 
 export default class RevenueLicense extends React.Component {
@@ -20,19 +21,36 @@ export default class RevenueLicense extends React.Component {
         License_Issued_Date: '',
         Vehicle_Reg_No: '',
         License_Expiry_Date: '',
-        License_No: ''
+        License_No: '',
+        loading: false
+    }
+
+    handleModalClose = () => {
+        this.setState({loading: false})
     }
 
     handleChange = (name, value) => {
         this.setState({[name]: value})
     }
 
-    handleSubmit = () => {
-        if (this.state.vehicleNo) {
-            getRevenueLicenseDetails(this.state.vehicleNo)
+    handleSubmit = async () => {
+        if (this.state.vehicleNo && !this.props.loading) {
+            this.setState({loading: true})
+            await getRevenueLicenseDetails(this.state.vehicleNo)
                 .then(data => {
                     this.setState({...data})
-                }).catch(err => console.log(err))
+                }).catch(err => {
+                    this.setState({loading: false})
+                    console.log(err)
+                    ToastAndroid.showWithGravityAndOffset(
+                        'server error!',
+                        ToastAndroid.LONG,
+                        ToastAndroid.BOTTOM,
+                        25,
+                        100,
+                    );
+                })
+            this.setState({loading: false})
         }
     }
 
@@ -73,6 +91,7 @@ export default class RevenueLicense extends React.Component {
                 <CustomButton style={styles.materialButtonPrimary} title={'Get Status'}
                               handleClick={this.handleSubmit}/>
                 {data}
+                <LoadingScreen loading={this.state.loading} handleClose={this.handleModalClose}/>
             </View>
         );
     }

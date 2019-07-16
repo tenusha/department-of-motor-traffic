@@ -11,7 +11,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use("/vehicle/revenueLicense",revenue_license)
+app.use("/revenueLicense",revenue_license)
 
 app.listen(3001, err => {
     if (err) {

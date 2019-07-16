@@ -29,8 +29,7 @@ export default class LoginScreen extends React.Component {
         const {navigate} = this.props.navigation;
         return (
             <>
-                <AppHeader {...this.props}/>
-                <Text>My Vehicles</Text>
+                <Text>Login</Text>
                 <Button
                     buttonStyle={{
                         borderRadius: 0,
@@ -42,7 +41,7 @@ export default class LoginScreen extends React.Component {
                     onPress={() => {
                         this.props.navigation.navigate("App")
                     }}
-                    title='Logout'/>
+                    title='go back'/>
             </>
         );
     }
