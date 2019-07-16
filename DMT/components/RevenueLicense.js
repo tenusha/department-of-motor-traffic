@@ -40,7 +40,6 @@ export default class RevenueLicense extends React.Component {
                 .then(data => {
                     this.setState({...data})
                 }).catch(err => {
-                    this.setState({loading: false})
                     ToastAndroid.showWithGravityAndOffset(
                         'server error!',
                         ToastAndroid.LONG,
@@ -50,6 +49,14 @@ export default class RevenueLicense extends React.Component {
                     );
                 })
             this.setState({loading: false})
+        }else{
+            ToastAndroid.showWithGravityAndOffset(
+                'please add a valid vehicle number!',
+                ToastAndroid.SHORT,
+                ToastAndroid.BOTTOM,
+                25,
+                100,
+            );
         }
     }
 

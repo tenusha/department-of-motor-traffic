@@ -16,6 +16,7 @@ export default class LoginScreen extends React.Component {
 
     setUser = async () => {
         const user = {
+            id: 1,
             fname: "Tenusha",
             lname: "Guruge"
         }

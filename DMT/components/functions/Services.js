@@ -8,6 +8,14 @@ export function getRevenueLicenseDetails(vehicle) {
     return callGet(config.dmtUrl + '/revenueLicense/' + vehicle);
 }
 
+export function getUserVehicles(uid) {
+    return callGet(config.dmtUrl + '/users/' + uid + "/vehicles");
+}
+
+export function removeUserVehicle(uid, vno) {
+    return callDelete(config.dmtUrl + '/users/' + uid + "/vehicles/" + vno);
+}
+
 const callGet = (url) => {
     return fetch(url, {
         method: 'GET',
@@ -19,11 +27,16 @@ const callGet = (url) => {
     }).then(handleres);
 }
 
+const callDelete = (url) => {
+    return fetch(url, {
+        method: 'DELETE'
+    }).then(handleres);
+}
 
 const handleres = (res) => {
     if (res.ok) {
         return res.json();
     } else {
-        return Promise.reject();
+        return Promise.reject(res.status + " : " + res.statusText);
     }
 }

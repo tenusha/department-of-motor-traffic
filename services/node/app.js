@@ -2,6 +2,7 @@
 const express = require('express')
 const app = express()
 const revenue_license = require('./routers/revenue_license')
+const user_vehicles = require('./routers/user_vehicles')
 
 app.use(express.json());
 app.use(function (req, res, next) {
@@ -12,6 +13,7 @@ app.use(function (req, res, next) {
 });
 
 app.use("/revenueLicense",revenue_license)
+app.use("/users",user_vehicles)
 
 app.listen(3001, err => {
     if (err) {

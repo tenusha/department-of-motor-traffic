@@ -10,7 +10,8 @@ export default class AppHeader extends React.Component {
 
     componentDidMount() {
         AsyncStorage.getItem("dmt_user").then(user => {
-            this.setState({user})
+            const userObj = JSON.parse(user)
+            this.setState({user: userObj})
         })
     }
 
