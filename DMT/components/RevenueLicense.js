@@ -68,12 +68,12 @@ export default class RevenueLicense extends React.Component {
                     style={{
                         borderBottomColor: '#D3D3D3',
                         borderBottomWidth: 1,
-                        top: 210,
-                        margin: 10
+                        margin: 10,
+                        marginTop: 30,
+                        marginBottom: 30
                     }}
                 />
                 <Card
-                    containerStyle={{top: 220}}
                     title={"Vehicle Number : " + this.state.vehicle}
                     titleStyle={{fontSize: 18}}>
                     <Text style={{marginBottom: 25}}>License Issued Date : <Text
@@ -95,8 +95,10 @@ export default class RevenueLicense extends React.Component {
                                  label={'Vehicle Number :'}
                                  value={this.state.vehicleNo}
                                  handleChange={(value) => this.handleChange('vehicleNo', value)}/>
-                <CustomButton style={styles.materialButtonPrimary} title={'Get Status'}
-                              handleClick={this.handleSubmit}/>
+                <View style={{alignItems: 'flex-end'}}>
+                    <CustomButton style={styles.materialButtonPrimary} title={'Get Status'}
+                                  handleClick={this.handleSubmit}/>
+                </View>
                 {data}
                 <LoadingScreen loading={this.state.loading} handleClose={this.handleModalClose}/>
             </View>
@@ -106,17 +108,13 @@ export default class RevenueLicense extends React.Component {
 
 const styles = StyleSheet.create({
     materialMessageTextbox: {
-        top: 90,
-        left: 12.58,
-        width: 340,
-        height: 90,
-        position: "absolute"
+        padding: 10,
+        width: "100%",
+        height: 100,
     },
     materialButtonPrimary: {
-        top: 220,
-        left: 220,
         width: 130,
         height: 36,
-        position: "absolute"
+        margin: 10
     }
 });

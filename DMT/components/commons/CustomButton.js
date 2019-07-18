@@ -14,7 +14,7 @@ export default class CustomButton extends React.Component {
 
 const styles = StyleSheet.create({
     root: {
-        flex: 1,
+
         backgroundColor: "#2196F3",
         flexDirection: "row",
         alignItems: "center",

@@ -1,4 +1,5 @@
 import React from 'react';
+import {AsyncStorage} from "react-native";
 
 export default class Logout extends React.Component {
     static navigationOptions = {
@@ -6,7 +7,17 @@ export default class Logout extends React.Component {
     };
 
     componentDidMount() {
-        this.props.navigation.navigate("App")
+        try {
+            AsyncStorage.getItem("dmt_user").then(user => {
+                if (user) {
+                    this.props.navigation.navigate("UserApp")
+                } else {
+                    this.props.navigation.navigate("App")
+                }
+            })
+        }catch(err){
+            this.props.navigation.navigate("App")
+        }
     }
 
     render() {

@@ -66,7 +66,6 @@ export default class CustomTextField extends React.Component {
 
 const styles = StyleSheet.create({
     root: {
-        flex: 1,
         backgroundColor: "transparent"
     },
     label: {

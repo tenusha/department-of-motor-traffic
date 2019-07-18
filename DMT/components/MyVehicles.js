@@ -140,12 +140,14 @@ export default class MyVehicles extends React.Component {
                                  label={'Vehicle Number :'}
                                  value={this.state.vehicleNo}
                                  handleChange={(value) => this.handleChange('vehicleNo', value)}/>
-                <Button
-                    title="Add new vehicle"
-                    type="outline"
-                    onPress={this.handleSubmit}
-                    containerStyle={{width: 150, height: 36, marginTop: 20, marginLeft: 200}}
-                />
+                <View style={{alignItems: 'flex-end'}}>
+                    <Button
+                        title="Add new vehicle"
+                        type="outline"
+                        onPress={this.handleSubmit}
+                        containerStyle={{width: 150, height: 36, marginTop: 20, marginRight: 10}}
+                    />
+                </View>
                 <View
                     style={{
                         borderBottomColor: '#D3D3D3',
@@ -192,8 +194,8 @@ export default class MyVehicles extends React.Component {
 
 const styles = StyleSheet.create({
     materialMessageTextbox: {
-        left: 10,
-        width: 340,
-        height: 90,
+        padding: 10,
+        width: "100%",
+        height: 100,
     }
 });

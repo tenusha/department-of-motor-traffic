@@ -77,7 +77,7 @@ const SwitchNavigator = createSwitchNavigator({
         navigationOptions: {
             headerVisible: false,
         },
-        initialRouteName: 'App'
+        initialRouteName: 'Reload'
     }
 );
 
