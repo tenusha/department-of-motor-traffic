@@ -1,5 +1,5 @@
 import React from 'react';
-import {AsyncStorage, Image, Text} from 'react-native';
+import {AsyncStorage, Image, Text, ToastAndroid} from 'react-native';
 import {Button} from "react-native-elements";
 import {registerForPushNotificationsAsync} from "./functions/DmtNotification";
 
@@ -53,7 +53,7 @@ export default class LoginScreen extends React.Component {
                         backgroundColor: '#ff0000'
                     }}
                     onPress={() => {
-                        registerForPushNotificationsAsync();
+                        registerForPushNotificationsAsync()
                         this.props.navigation.navigate("Reload")
                     }}
                     title='login'/>
