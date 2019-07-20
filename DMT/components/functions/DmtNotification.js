@@ -1,7 +1,7 @@
 import {Notifications} from 'expo';
 import * as Permissions from 'expo-permissions';
 import config from '../../config'
-import {AsyncStorage, ToastAndroid} from "react-native";
+import {AsyncStorage} from "react-native";
 
 const PUSH_ENDPOINT = config.dmtUrl + '/users/push-token';
 
@@ -33,7 +33,7 @@ export async function registerForPushNotificationsAsync() {
     const userObj = JSON.parse(user)
 
     // POST the token to your backend server from where you can retrieve it to send push notifications.
-    fetch(PUSH_ENDPOINT, {
+    return fetch(PUSH_ENDPOINT, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -50,15 +50,8 @@ export async function registerForPushNotificationsAsync() {
     }).then(res => {
         if (!res.ok) {
             return Promise.reject(res.status + " : " + res.statusText);
+        } else {
+            return res.json()
         }
     })
-        .catch(err => {
-            ToastAndroid.showWithGravityAndOffset(
-                'server error!',
-                ToastAndroid.LONG,
-                ToastAndroid.BOTTOM,
-                25,
-                100,
-            );
-        })
 }

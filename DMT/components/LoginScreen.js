@@ -53,7 +53,15 @@ export default class LoginScreen extends React.Component {
                         backgroundColor: '#ff0000'
                     }}
                     onPress={() => {
-                        registerForPushNotificationsAsync()
+                        registerForPushNotificationsAsync().catch(err => {
+                            ToastAndroid.showWithGravityAndOffset(
+                                'notification server error!',
+                                ToastAndroid.LONG,
+                                ToastAndroid.BOTTOM,
+                                25,
+                                100,
+                            );
+                        })
                         this.props.navigation.navigate("Reload")
                     }}
                     title='login'/>
