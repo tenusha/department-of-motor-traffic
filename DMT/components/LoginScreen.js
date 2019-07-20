@@ -1,6 +1,7 @@
 import React from 'react';
 import {AsyncStorage, Image, Text} from 'react-native';
 import {Button} from "react-native-elements";
+import {registerForPushNotificationsAsync} from "./functions/DmtNotification";
 
 export default class LoginScreen extends React.Component {
     static navigationOptions = {
@@ -18,7 +19,8 @@ export default class LoginScreen extends React.Component {
         const user = {
             id: 1,
             fname: "Tenusha",
-            lname: "Guruge"
+            lname: "Guruge",
+            email: "tenusha@gmail.com"
         }
 
         AsyncStorage.setItem("dmt_user", JSON.stringify(user))
@@ -51,6 +53,7 @@ export default class LoginScreen extends React.Component {
                         backgroundColor: '#ff0000'
                     }}
                     onPress={() => {
+                        registerForPushNotificationsAsync();
                         this.props.navigation.navigate("Reload")
                     }}
                     title='login'/>
