@@ -56,7 +56,7 @@ export default class LoginScreen extends React.Component {
                         registerForPushNotificationsAsync().catch(err => {
                             ToastAndroid.showWithGravityAndOffset(
                                 'notification server error!',
-                                ToastAndroid.LONG,
+                                ToastAndroid.SHORT,
                                 ToastAndroid.BOTTOM,
                                 25,
                                 100,
