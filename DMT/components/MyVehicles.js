@@ -1,8 +1,8 @@
 import React from 'react';
-import {AsyncStorage, Image, ScrollView, StyleSheet, Text, ToastAndroid, View} from 'react-native';
+import {AsyncStorage, Image, ScrollView, StyleSheet, Text, ToastAndroid, View, Alert} from 'react-native';
 import {Button, Card} from "react-native-elements"
 import AppHeader from "./commons/AppHeader";
-import {addUserVehicle, getRevenueLicenseDetails, getUserVehicles, removeUserVehicle} from "./functions/Services";
+import {addUserVehicle, getUserVehicleDetails, getUserVehicles, removeUserVehicle} from "./functions/Services";
 import LoadingScreen from "./commons/LoadingScreen";
 import CustomTextField from "./commons/CustomTextField"
 
@@ -91,7 +91,7 @@ export default class MyVehicles extends React.Component {
         if (this.state.vehicles) {
             this.setState({displayVehicles: []}, () => {
                 this.state.vehicles.map((vehicleNo, i) => {
-                    getRevenueLicenseDetails(vehicleNo).then(data => {
+                    getUserVehicleDetails(vehicleNo).then(data => {
                         this.setState({displayVehicles: [...this.state.displayVehicles, data]})
                     }).catch(err => {
                         ToastAndroid.showWithGravityAndOffset(
@@ -108,26 +108,42 @@ export default class MyVehicles extends React.Component {
     }
 
     removeVehicle = async no => {
-        this.setState({loading: true})
-        await removeUserVehicle(this.state.user.id, no).then(data => {
-            ToastAndroid.showWithGravityAndOffset(
-                'vehicle removed!',
-                ToastAndroid.SHORT,
-                ToastAndroid.BOTTOM,
-                25,
-                100,
-            );
-            this.updateData()
-        }).catch(err => {
-            ToastAndroid.showWithGravityAndOffset(
-                'server error!',
-                ToastAndroid.LONG,
-                ToastAndroid.BOTTOM,
-                25,
-                100,
-            );
-        })
-        this.setState({loading: false})
+        const alertMsg = "Vehicle " + no + " will be removed from your account"
+        Alert.alert(
+            'Remove Vehicle',
+            alertMsg,
+            [
+                {
+                    text: 'Cancel',
+                    style: 'cancel',
+                },
+                {
+                    text: 'OK', onPress: async () => {
+                        this.setState({loading: true})
+                        await removeUserVehicle(this.state.user.id, no).then(data => {
+                            ToastAndroid.showWithGravityAndOffset(
+                                'vehicle removed!',
+                                ToastAndroid.SHORT,
+                                ToastAndroid.BOTTOM,
+                                25,
+                                100,
+                            );
+                            this.updateData()
+                        }).catch(err => {
+                            ToastAndroid.showWithGravityAndOffset(
+                                'server error!',
+                                ToastAndroid.LONG,
+                                ToastAndroid.BOTTOM,
+                                25,
+                                100,
+                            );
+                        })
+                        this.setState({loading: false})
+                    }
+                },
+            ],
+            {cancelable: false},
+        );
     }
 
     render() {
@@ -162,22 +178,58 @@ export default class MyVehicles extends React.Component {
                         key={i}
                         title={"Vehicle Number : " + vehicle.vehicle}
                         titleStyle={{fontSize: 18}}>
-                        <Text style={{marginBottom: 25}}>License Issued Date : <Text
-                            style={{color: "rgb(0,102,102)"}}>{vehicle.License_Issued_Date}</Text></Text>
-                        <Text style={{marginBottom: 25}}>Vehicle Reg No : <Text
-                            style={{color: "rgb(0,102,102)"}}>{vehicle.Vehicle_Reg_No}</Text></Text>
-                        <Text style={{marginBottom: 25}}>License Expiry Date : <Text
-                            style={{color: "rgb(0,102,102)"}}>{vehicle.License_Expiry_Date}</Text></Text>
-                        <Text style={{marginBottom: 25}}>License No : <Text
-                            style={{color: "rgb(0,102,102)"}}>{vehicle.License_No}</Text></Text>
-                        <Button
-                            title="Remove vehicle"
-                            type="outline"
-                            onPress={() => this.removeVehicle(vehicle.vehicle)}
-                            buttonStyle={{borderColor: 'red'}}
-                            titleStyle={{color: 'red'}}
-                            containerStyle={{width: 140, height: 36, marginLeft: 160}}
-                        />
+                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Issued Date </Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text style={{color: "rgb(0,102,102)"}}>: {vehicle.License_Issued_Date}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Expiry Date </Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text style={{color: "rgb(0,102,102)"}}>: {vehicle.License_Expiry_Date}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Reg No </Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text style={{color: "rgb(0,102,102)"}}>: {vehicle.Vehicle_Reg_No}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License No </Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text style={{color: "rgb(0,102,102)"}}>: {vehicle.License_No}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Make and Model </Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text style={{color: "rgb(0,102,102)"}}>: {vehicle.make_and_model}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Model Year </Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text style={{color: "rgb(0,102,102)"}}>: {vehicle.model_year}</Text></View>
+                            </View>
+                            <Button
+                                title="Remove vehicle"
+                                type="outline"
+                                onPress={() => this.removeVehicle(vehicle.vehicle)}
+                                buttonStyle={{borderColor: 'red'}}
+                                titleStyle={{color: 'red'}}
+                                containerStyle={{width: 140, height: 36, marginLeft: 160}}
+                            />
+                        </View>
                     </Card>
                 })}
                 {this.state.displayVehicles.length == 0 &&
