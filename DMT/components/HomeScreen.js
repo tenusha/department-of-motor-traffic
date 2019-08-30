@@ -1,9 +1,10 @@
-import React from 'react';
-import {AsyncStorage, Image, ScrollView, Text} from 'react-native';
-import {Button, Card, Icon} from "react-native-elements";
+import React from 'react'
+import {AsyncStorage, Image, ScrollView, Text} from 'react-native'
+import {Button, Card, Icon} from "react-native-elements"
 import Footer from './commons/Footer'
 import RevenueLicense from './RevenueLicense'
-import AppHeader from "./commons/AppHeader";
+import AppHeader from "./commons/AppHeader"
+import configs from "../config.json"
 
 export default class HomeScreen extends React.Component {
     static navigationOptions = {
@@ -37,13 +38,17 @@ export default class HomeScreen extends React.Component {
                             service.
                         </Text>
                         <Button
-                            icon={<Icon name='code' color='#2089dc'/>}
+                            icon={<Icon name='code' color={configs.theme}/>}
                             buttonStyle={{
                                 borderRadius: 0,
                                 marginLeft: 0,
                                 marginRight: 0,
                                 marginBottom: 0,
-                                borderWidth: 1
+                                borderWidth: 1,
+                                borderColor: configs.theme
+                            }}
+                            titleStyle={{
+                                color: configs.theme
                             }}
                             type="outline"
                             onPress={() => navigate('OngoingNumbers')}
@@ -57,13 +62,17 @@ export default class HomeScreen extends React.Component {
                             You can get the details of a registered vehicle through this service.
                         </Text>
                         <Button
-                            icon={<Icon name='code' color='#2089dc'/>}
+                            icon={<Icon name='code' color={configs.theme}/>}
                             buttonStyle={{
                                 borderRadius: 0,
                                 marginLeft: 0,
                                 marginRight: 0,
                                 marginBottom: 0,
-                                borderWidth: 1
+                                borderWidth: 1,
+                                borderColor: configs.theme
+                            }}
+                            titleStyle={{
+                                color: configs.theme
                             }}
                             type="outline"
                             onPress={() => navigate('VehicleDetails')}
@@ -80,13 +89,17 @@ export default class HomeScreen extends React.Component {
                             Land vehicles, Three wheelers, Motor car A-Z online using this service.
                         </Text>
                         <Button
-                            icon={<Icon name='code' color='#2089dc'/>}
+                            icon={<Icon name='code' color={configs.theme}/>}
                             buttonStyle={{
                                 borderRadius: 0,
                                 marginLeft: 0,
                                 marginRight: 0,
                                 marginBottom: 0,
-                                borderWidth: 1
+                                borderWidth: 1,
+                                borderColor: configs.theme
+                            }}
+                            titleStyle={{
+                                color: configs.theme
                             }}
                             type="outline"
                             onPress={() => navigate('RevenueLicense')}

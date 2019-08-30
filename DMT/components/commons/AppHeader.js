@@ -1,6 +1,7 @@
-import React from 'react';
-import {Button, Header, Icon} from "react-native-elements";
-import {AsyncStorage, Image} from "react-native";
+import React from 'react'
+import {Button, Header, Icon} from "react-native-elements"
+import {AsyncStorage, Image} from "react-native"
+import configs from "../../config.json"
 
 export default class AppHeader extends React.Component {
 
@@ -22,7 +23,11 @@ export default class AppHeader extends React.Component {
         const navigateTo = this.state.user ? "Home" : "Login"
         return (
             <Header
+                containerStyle={{
+                    backgroundColor: configs.theme
+                }}
                 leftComponent={<Button
+                    type="clear"
                     icon={<Icon name='menu' color='#ffffff'/>}
                     buttonStyle={{
                         borderRadius: 0,
@@ -35,6 +40,7 @@ export default class AppHeader extends React.Component {
                 centerComponent={{text: this.props.title, style: {color: '#fff', fontSize: 20}}}
 
                 rightComponent={<Button
+                    type="clear"
                     icon={userIcon}
                     buttonStyle={{
                         borderRadius: 0,

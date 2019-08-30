@@ -1,5 +1,6 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React from 'react'
+import {StyleSheet, Text, View} from 'react-native'
+import configs from "../../config.json"
 
 export default class Footer extends React.Component {
 
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
     header_footer_style: {
         width: '100%',
         height: 45,
-        backgroundColor: '#2089dc',
+        backgroundColor: configs.theme,
         padding: 10,
     },
     textStyle: {
