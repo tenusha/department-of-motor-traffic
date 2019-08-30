@@ -23,15 +23,12 @@ export default class App extends React.Component {
 }
 
 const customDrawerContent = (props) => (
-    <ScrollView
-    >
-        <View
-            style={{backgroundColor: configs.theme}}
-        >
-            <Image
-                source={require('./assets/drawer_image.png')}
-                style={{width: "100%", height: 150}}
-            />
+    <ScrollView>
+        <View style={{backgroundColor: configs.theme}}>
+        <Image
+            source={require('./assets/drawer_image.png')}
+            style={{width: "100%", height: 150}}
+        />
         </View>
         <DrawerItems {...props}/>
     </ScrollView>
@@ -50,6 +47,11 @@ const DrawerNavigator = createDrawerNavigator({
             headerVisible: false,
         },
         initialRouteName: 'Home',
+        contentOptions: {
+            activeLabelStyle:{
+                color: configs.theme
+            }
+        },
         contentComponent: customDrawerContent,
     }
 );
@@ -68,6 +70,11 @@ const DrawerNavigatorLoginUsers = createDrawerNavigator({
             headerVisible: false,
         },
         initialRouteName: 'Home',
+        contentOptions: {
+            activeLabelStyle:{
+                color: configs.theme
+            }
+        },
         contentComponent: customDrawerContent,
     }
 );

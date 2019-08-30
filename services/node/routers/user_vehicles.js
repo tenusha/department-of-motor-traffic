@@ -50,7 +50,8 @@ router.get('/:vno', async (req, res) => {
             License_Expiry_Date: exp,
             License_No: Math.floor(Math.random()*9000000) + 1000000,
 			make_and_model: makeAndModel[Math.floor(Math.random()*makeAndModel.length)],
-			model_year: modelYear[Math.floor(Math.random()*modelYear.length)]
+			model_year: modelYear[Math.floor(Math.random()*modelYear.length)],
+			fines: getRandomInt(4)
         }
 		
         res.status(200).json(vehicle)
@@ -105,6 +106,7 @@ router.post('/push-token', async (req, res) => {
 
     try {
         subscriptions.push(req.body)
+        console.log(req.body)
         res.status(200).json({success:true})
 
     } catch (err) {
@@ -170,6 +172,10 @@ handleErrors = response => {
 
 function randomDate(start, end) {
   return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
 }
 
 module.exports = router
