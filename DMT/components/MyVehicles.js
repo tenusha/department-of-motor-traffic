@@ -200,7 +200,7 @@ export default class MyVehicles extends React.Component {
                                     flex: 1,
                                     alignSelf: 'stretch'
                                 }}><Text
-                                    style={{color: barColor}}>: {vehicle.License_Issued_Date}</Text></View>
+                                    style={{fontWeight: "bold"}}>: {vehicle.License_Issued_Date}</Text></View>
                             </View>
                             <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
                                 <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Expiry Date </Text></View>
@@ -208,57 +208,57 @@ export default class MyVehicles extends React.Component {
                                     flex: 1,
                                     alignSelf: 'stretch'
                                 }}><Text
-                                    style={{color: barColor}}>: {vehicle.License_Expiry_Date}</Text></View>
+                                    style={{fontWeight: "bold"}}>: {vehicle.License_Expiry_Date}</Text></View>
                             </View>
                             <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
                                 <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Reg No </Text></View>
                                 <View style={{
                                     flex: 1,
                                     alignSelf: 'stretch'
-                                }}><Text style={{color: barColor}}>: {vehicle.Vehicle_Reg_No}</Text></View>
+                                }}><Text style={{fontWeight: "bold"}}>: {vehicle.Vehicle_Reg_No}</Text></View>
                             </View>
                             <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
                                 <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License No </Text></View>
                                 <View style={{
                                     flex: 1,
                                     alignSelf: 'stretch'
-                                }}><Text style={{color: barColor}}>: {vehicle.License_No}</Text></View>
+                                }}><Text
+                                    style={{fontWeight: "bold"}}>: {vehicle.License_No}</Text></View>
                             </View>
                             <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
                                 <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Make and Model </Text></View>
                                 <View style={{
                                     flex: 1,
                                     alignSelf: 'stretch'
-                                }}><Text style={{color: barColor}}>: {vehicle.make_and_model}</Text></View>
+                                }}><Text style={{fontWeight: "bold"}}>: {vehicle.make_and_model}</Text></View>
                             </View>
                             <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
                                 <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Model Year </Text></View>
                                 <View style={{
                                     flex: 1,
                                     alignSelf: 'stretch'
-                                }}><Text style={{color: barColor}}>: {vehicle.model_year}</Text></View>
+                                }}><Text
+                                    style={{fontWeight: "bold"}}>: {vehicle.model_year}</Text></View>
                             </View>
                             <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
                                 <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Fines this week </Text></View>
                                 <View style={{
                                     flex: 1,
                                     alignSelf: 'stretch'
-                                }}><Text style={{color: barColor}}>: {vehicle.fines}</Text></View>
+                                }}><Text style={{fontWeight: "bold"}}>: {vehicle.fines}</Text></View>
                             </View>
-                            {/*<View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>*/}
                             <View style={{flex: 1, alignSelf: 'flex-end'}}>
                                 <Button
                                     icon={<Icon name='delete' color='red'/>}
-                                    title="Remove vehicle"
+                                    title="Remove"
                                     type="outline"
                                     onPress={() => this.removeVehicle(vehicle.vehicle)}
-                                    buttonStyle={{borderColor: 'red', paddingRight:10}}
+                                    buttonStyle={{borderColor: 'red', paddingRight: 10}}
                                     titleStyle={{color: 'red'}}
-                                    containerStyle={{width: 150, height: 36}}
+                                    containerStyle={{width: 100, height: 36}}
                                 />
                             </View>
                         </View>
-                        {/*</View>*/}
                     </Card>
                 })}
                 {this.state.displayVehicles.length == 0 &&

@@ -47,8 +47,8 @@ export default class AppHeader extends React.Component {
                     }}
                     onPress={() => this.props.navigation.openDrawer()}/>}
 
-                centerComponent={{text: this.props.title, style: {color: '#fff', fontSize: 20}}}
-                // centerComponent={centerComponent}
+                // centerComponent={{text: this.props.title, style: {color: '#fff', fontSize: 20}}}
+                centerComponent={centerComponent}
 
                 rightComponent={<Button
                     type="clear"

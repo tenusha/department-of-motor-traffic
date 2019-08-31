@@ -82,7 +82,9 @@ export default class RevenueLicense extends React.Component {
                             flex: 1,
                             alignSelf: 'stretch'
                         }}><Text
-                            style={{color: "rgb(0,102,102)"}}>: {this.state.License_Issued_Date}</Text></View>
+                            style={{
+                                fontWeight: "bold"
+                            }}>: {this.state.License_Issued_Date}</Text></View>
                     </View>
                     <Text/>
                     <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
@@ -91,7 +93,9 @@ export default class RevenueLicense extends React.Component {
                             flex: 1,
                             alignSelf: 'stretch'
                         }}><Text
-                            style={{color: "rgb(0,102,102)"}}>: {this.state.Vehicle_Reg_No}</Text></View>
+                            style={{
+                                fontWeight: "bold"
+                            }}>: {this.state.Vehicle_Reg_No}</Text></View>
                     </View>
                     <Text/>
                     <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
@@ -100,7 +104,9 @@ export default class RevenueLicense extends React.Component {
                             flex: 1,
                             alignSelf: 'stretch'
                         }}><Text
-                            style={{color: "rgb(0,102,102)"}}>: {this.state.License_Expiry_Date}</Text></View>
+                            style={{
+                                fontWeight: "bold"
+                            }}>: {this.state.License_Expiry_Date}</Text></View>
                     </View>
                     <Text/>
                     <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
@@ -109,7 +115,9 @@ export default class RevenueLicense extends React.Component {
                             flex: 1,
                             alignSelf: 'stretch'
                         }}><Text
-                            style={{color: "rgb(0,102,102)"}}>: {this.state.License_No}</Text></View>
+                            style={{
+                                fontWeight: "bold"
+                            }}>: {this.state.License_No}</Text></View>
                     </View>
                 </Card>
             </View> : null
