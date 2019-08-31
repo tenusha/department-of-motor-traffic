@@ -8,6 +8,10 @@ export function getRevenueLicenseDetails(vehicle) {
     return callGet(config.dmtUrl + '/revenueLicense/' + vehicle);
 }
 
+export function getUserVehicleDetails(vehicle) {
+    return callGet(config.dmtUrl + '/users/' + vehicle);
+}
+
 export function getUserVehicles(uid) {
     return callGet(config.dmtUrl + '/users/' + uid + "/vehicles");
 }

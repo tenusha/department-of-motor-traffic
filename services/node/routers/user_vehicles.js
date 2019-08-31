@@ -8,6 +8,10 @@ var userVehicles=[
 	{id:"3",vehicles:["300-8693", "CAE 4430", "LL-1459"]}
 ]
 
+var makeAndModel=["Toyota prius", "Susuki Wagon-R", "Honda Vezel", "TATA Nano", "Toyota Corolla", "Toyota Aqua", "Toyota Axio", "Susuki Maruti", "BMW X5"];
+
+var modelYear=["2004", "2005", "2006", "2007", "2008", "2009", "2019", "2018", "2017", "2016","2015", "2013"];
+
 var subscriptions = []
 
 router.get('/:uid/vehicles', async (req, res) => {
@@ -16,6 +20,41 @@ router.get('/:uid/vehicles', async (req, res) => {
         const userId = req.params.uid
         var vehicles = userVehicles.find(item => item.id == userId).vehicles
         res.status(200).json(vehicles)
+
+    } catch (err) {
+        res.status(500).json(err)
+    }
+});
+
+router.get('/:vno', async (req, res) => {
+
+    try {
+        var expDateObj = randomDate(new Date(2019, 0, 1), new Date())
+        var issueDateObj = new Date(expDateObj)
+        issueDateObj.setDate(issueDateObj.getDate() - 1)
+        
+        var month = ((issueDateObj.getMonth() + 1) < 10 ? '0' : '') + (issueDateObj.getMonth() + 1)
+        var date = ((issueDateObj.getDate()) < 10 ? '0' : '') + (issueDateObj.getDate())
+
+		const issue = (issueDateObj.getFullYear() - 1) + "-" + month + "-" + date;
+
+		month = ((expDateObj.getMonth() + 1) < 10 ? '0' : '') + (expDateObj.getMonth() + 1)
+        date = (expDateObj.getDate() < 10 ? '0' : '') + (expDateObj.getDate())
+
+		const exp = expDateObj.getFullYear() + "-" + month + "-" + date;
+
+        var vehicle = {
+            vehicle:req.params.vno,
+            License_Issued_Date: issue,
+            Vehicle_Reg_No: req.params.vno,
+            License_Expiry_Date: exp,
+            License_No: Math.floor(Math.random()*9000000) + 1000000,
+			make_and_model: makeAndModel[Math.floor(Math.random()*makeAndModel.length)],
+			model_year: modelYear[Math.floor(Math.random()*modelYear.length)],
+			fines: getRandomInt(4)
+        }
+		
+        res.status(200).json(vehicle)
 
     } catch (err) {
         res.status(500).json(err)
@@ -67,6 +106,7 @@ router.post('/push-token', async (req, res) => {
 
     try {
         subscriptions.push(req.body)
+        console.log(req.body)
         res.status(200).json({success:true})
 
     } catch (err) {
@@ -128,6 +168,14 @@ handleErrors = response => {
         throw new Error("Request failed " + response.statusText)
     }
     return response
+}
+
+function randomDate(start, end) {
+  return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
 }
 
 module.exports = router

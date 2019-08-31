@@ -1,14 +1,13 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {Component} from "react";
+import {StyleSheet, TouchableOpacity, Text} from "react-native";
 import configs from "../../config";
 
-export default class CustomButton extends React.Component {
-
+export default class MaterialButtonPrimary1 extends Component {
     render() {
         return (
-            <View style={[styles.root, this.props.style]}>
-                <Text style={styles.caption} onPress={this.props.handleClick}>{this.props.title}</Text>
-            </View>
+            <TouchableOpacity style={[styles.root, this.props.style]} onPress={this.props.handleSubmit}>
+                <Text style={styles.caption}>Login</Text>
+            </TouchableOpacity>
         );
     }
 }
@@ -23,7 +22,9 @@ const styles = StyleSheet.create({
         paddingLeft: 16,
         elevation: 2,
         minWidth: 88,
-        borderRadius: 2,
+        borderRadius: 100,
+        borderColor: "#000000",
+        borderWidth: 0,
         shadowOffset: {
             height: 1,
             width: 0
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     },
     caption: {
         color: "#fff",
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: "200"
     }
 });
