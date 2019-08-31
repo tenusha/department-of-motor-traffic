@@ -1,13 +1,10 @@
 import React from 'react';
-import {Image, StyleSheet, View, AsyncStorage, ScrollView} from 'react-native';
+import {Image, StyleSheet, View, ScrollView, TouchableHighlight, ToastAndroid} from 'react-native';
 import MaterialButtonPrimary1 from "./login_symbols/MaterialButtonPrimary1";
 import MaterialButtonViolet from "./login_symbols/MaterialButtonViolet";
 import MaterialCheckboxWithLabel1 from "./login_symbols/MaterialCheckboxWithLabel1";
-import MaterialButtonWithVioletText1 from "./login_symbols/MaterialButtonWithVioletText1";
 import LoginTextBox from "./login_symbols/LoginTextBox";
 import LoginHeader from "./login_symbols/LoginHeader";
-import {registerForPushNotificationsAsync} from "./functions/DmtNotification";
-import * as ToastAndroid from "react-native";
 import configs from "../config";
 
 export default class LoginScreen extends React.Component {
@@ -21,6 +18,8 @@ export default class LoginScreen extends React.Component {
     state = {
         username: '',
         password: '',
+        rpassword: '',
+        license: '',
         remember: false
     }
 
@@ -29,32 +28,18 @@ export default class LoginScreen extends React.Component {
     }
 
     handleSubmit = async () => {
-        // TODO
-        console.log("login clicked")
-
-        const user = {
-            id: 1,
-            fname: "Tenusha",
-            lname: "Guruge",
-            email: "tenusha@gmail.com"
-        }
-
-        const result = await AsyncStorage.setItem("dmt_user", JSON.stringify(user))
-
-        registerForPushNotificationsAsync().catch(err => {
-            ToastAndroid.showWithGravityAndOffset(
-                'notification server error!',
-                ToastAndroid.SHORT,
-                ToastAndroid.BOTTOM,
-                25,
-                100,
-            );
-        })
-        this.props.navigation.navigate("Reload")
+        this.props.navigation.navigate("Login")
+        ToastAndroid.showWithGravityAndOffset(
+            'Registration successful! please login...',
+            ToastAndroid.SHORT,
+            ToastAndroid.BOTTOM,
+            25,
+            100,
+        );
     }
 
-    handleSignUp = async () => {
-        this.props.navigation.navigate("Home")
+    handleLogin = async () => {
+        this.props.navigation.navigate("Login")
     }
 
     handleToggle = () => {
@@ -67,9 +52,18 @@ export default class LoginScreen extends React.Component {
             <ScrollView style={styles.root}>
                 <LoginHeader navigation={this.props.navigation}/>
                 <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 10, marginBottom: 10}}>
-                    <View style={{width: 150, height: 150, backgroundColor: configs.theme, borderRadius: 10}}>
-                        <Image source={require('../assets/icons/login_logo.png')} style={{width: 150, height: 150}}/>
-                    </View>
+                    <TouchableHighlight
+                        style={styles.profileImgContainer}
+                    >
+                        <Image source={require('../assets/icons/user_reg.png')} style={styles.profileImg}/>
+                    </TouchableHighlight>
+                </View>
+                <View style={{flexDirection: "row", width: "100%"}}>
+                    <Image source={require('../assets/icons/revenue_license.png')}
+                           style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
+                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'driving license number'}
+                                  value={this.state.license}
+                                  handleChange={(value) => this.handleChange('license', value)}/>
                 </View>
                 <View style={{flexDirection: "row", width: "100%"}}>
                     <Image source={require('../assets/icons/username.png')}
@@ -83,16 +77,20 @@ export default class LoginScreen extends React.Component {
                            style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
                     <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'password'}
                                   value={this.state.password}
+                                  type={'password'}
                                   handleChange={(value) => this.handleChange('password', value)}/>
                 </View>
-                <MaterialCheckboxWithLabel1 style={styles.materialCheckboxWithLabel1} label={"Remember me"}
-                                            checked={this.state.remember} handleToggle={this.handleToggle}/>
-                <MaterialButtonPrimary1 style={styles.materialButtonPrimary1} handleSubmit={this.handleSubmit}/>
-                <MaterialButtonViolet style={styles.materialButtonViolet} handleClick={this.handleSignUp}/>
-
-                <MaterialButtonWithVioletText1
-                    style={styles.materialButtonWithVioletText1}
-                />
+                <View style={{flexDirection: "row", width: "100%", marginBottom:20}}>
+                    <Image source={require('../assets/icons/password.png')}
+                           style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
+                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'re-enter password'}
+                                  value={this.state.rpassword}
+                                  type={'password'}
+                                  handleChange={(value) => this.handleChange('rpassword', value)}/>
+                </View>
+                <MaterialButtonPrimary1 title={'Register'} style={styles.materialButtonPrimary1} handleSubmit={this.handleSubmit}/>
+                <MaterialButtonViolet title={'Login'} style={styles.materialButtonViolet} handleClick={this.handleLogin}/>
+                <View style={{marginBottom:20}}/>
             </ScrollView>
         );
     }
@@ -127,5 +125,15 @@ const styles = StyleSheet.create({
     materialButtonWithVioletText1: {
         marginTop: 20,
         height: 36,
+    },
+    profileImgContainer: {
+        height: 130,
+        width: 130,
+        borderRadius: 40,
+    },
+    profileImg: {
+        height: 130,
+        width: 130,
+        borderRadius: 40,
     }
 });

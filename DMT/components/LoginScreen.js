@@ -54,7 +54,7 @@ export default class LoginScreen extends React.Component {
     }
 
     handleSignUp = async () => {
-        this.props.navigation.navigate("Home")
+        this.props.navigation.navigate("SignIn")
     }
 
     handleToggle = () => {
@@ -87,8 +87,8 @@ export default class LoginScreen extends React.Component {
                 </View>
                 <MaterialCheckboxWithLabel1 style={styles.materialCheckboxWithLabel1} label={"Remember me"}
                                             checked={this.state.remember} handleToggle={this.handleToggle}/>
-                <MaterialButtonPrimary1 style={styles.materialButtonPrimary1} handleSubmit={this.handleSubmit}/>
-                <MaterialButtonViolet style={styles.materialButtonViolet} handleClick={this.handleSignUp}/>
+                <MaterialButtonPrimary1 title={'Login'} style={styles.materialButtonPrimary1} handleSubmit={this.handleSubmit}/>
+                <MaterialButtonViolet title={'Sign Up'} style={styles.materialButtonViolet} handleClick={this.handleSignUp}/>
 
                 <MaterialButtonWithVioletText1
                     style={styles.materialButtonWithVioletText1}
