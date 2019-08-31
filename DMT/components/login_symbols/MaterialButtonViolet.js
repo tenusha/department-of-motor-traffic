@@ -6,7 +6,7 @@ export default class MaterialButtonViolet extends Component {
     render() {
         return (
             <TouchableOpacity style={[styles.root, this.props.style]} onPress={this.props.handleClick}>
-                <Text style={styles.caption}>Sign up</Text>
+                <Text style={styles.caption}>{this.props.title}</Text>
             </TouchableOpacity>
         );
     }
