@@ -7,9 +7,10 @@ import RevenueLicense from './components/RevenueLicense'
 import MyVehicles from './components/MyVehicles'
 import Logout from './components/actions/Logout'
 import Reload from './components/commons/Reload'
-import {ScrollView} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {Image} from "react-native-elements";
 import {createAppContainer, createDrawerNavigator, createSwitchNavigator, DrawerItems} from 'react-navigation'
+import configs from "./config.json"
 import FineManagement from "./components/FineManagement";
 
 
@@ -18,7 +19,6 @@ export default class App extends React.Component {
 
     render() {
         return (
-
             <AppContainer/>
         );
     }
@@ -26,10 +26,12 @@ export default class App extends React.Component {
 
 const customDrawerContent = (props) => (
     <ScrollView>
-        <Image
-            source={require('./assets/drawer_image.png')}
-            style={{width: "100%", height: 150}}
-        />
+        <View style={{backgroundColor: configs.theme}}>
+            <Image
+                source={require('./assets/drawer_image.png')}
+                style={{width: "100%", height: 150}}
+            />
+        </View>
         <DrawerItems {...props}/>
     </ScrollView>
 )
@@ -47,6 +49,11 @@ const DrawerNavigator = createDrawerNavigator({
             headerVisible: false,
         },
         initialRouteName: 'Home',
+        contentOptions: {
+            activeLabelStyle: {
+                color: configs.theme
+            }
+        },
         contentComponent: customDrawerContent,
     }
 );
@@ -66,6 +73,11 @@ const DrawerNavigatorLoginUsers = createDrawerNavigator({
             headerVisible: false,
         },
         initialRouteName: 'Home',
+        contentOptions: {
+            activeLabelStyle: {
+                color: configs.theme
+            }
+        },
         contentComponent: customDrawerContent,
     }
 );

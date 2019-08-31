@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {StyleSheet, TouchableOpacity, Text} from "react-native";
+import configs from "../../config";
 
 export default class MaterialButtonWithVioletText1 extends Component {
     render() {
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
         minWidth: 88
     },
     caption: {
-        color: "#3F51B5",
+        color: configs.theme,
         fontSize: 14,
         fontWeight: "200"
     }

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {StyleSheet, TouchableOpacity, Text} from "react-native";
 import Icon from "@builderx/icons";
+import configs from "../../config";
 
 export default class MaterialCheckboxWithLabel1 extends Component {
     render() {
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     checkIcon: {
-        color: "#2196F3",
+        color: configs.theme,
         fontSize: 28,
         lineHeight: 28,
         alignSelf: "center",
