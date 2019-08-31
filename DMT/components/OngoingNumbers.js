@@ -11,7 +11,7 @@ const formatData = (data, numOfColumns) => {
 
     let numOfElementsInLastRow = data.length - (numberOfFullRows * numOfColumns);
     while(numOfElementsInLastRow !== numOfColumns && numOfElementsInLastRow !== 0) {
-        // data.push({key: `blank-${numOfElementsInLastRow}`, empty: true});
+        data.push({key: `blank-${numOfElementsInLastRow}`, empty: true});
         numOfElementsInLastRow = numOfElementsInLastRow + 1;
     }
     return data;
@@ -32,7 +32,7 @@ export default class OngoingNumbers extends React.Component {
       return (
           <>
             <View style={styles.item}>
-                <Image source={require('../assets/icon.png')} style={styles.itemImage}/>
+                <Image source={require('../assets/OngoingNumberIcons/carIcon.png')} style={styles.itemImage}/>
                 <Text style={styles.itemText}>{item.key}</Text>
                 <Text>The current number is:</Text>
                 <Text style={styles.itemLicenceNo}>{"XC-345543"}</Text>
@@ -60,10 +60,10 @@ export default class OngoingNumbers extends React.Component {
 const styles = StyleSheet.create({
    container: {
        flex: 1,
-       marginVertical: 20,
+       marginVertical: 0,
    },
    item: {
-       backgroundColor: '#4f4f4f',
+       backgroundColor: '#fff',
        alignItems: 'center',
        justifyContent: 'center',
        flex: 1,
@@ -71,17 +71,20 @@ const styles = StyleSheet.create({
        height: Dimensions.get('window').width / 2,
    },
    itemImage: {
-       width:  Dimensions.get('window').width / 2 - 30,
-       height:  Dimensions.get('window').width / 2 - 65
+       width:  Dimensions.get('window').width / 2 - 50,
+       height:  Dimensions.get('window').width / 2 - 95
    },
    itemInvisible: {
         backgroundColor: 'transparent'
    },
    itemText: {
-       color: '#fff'
+       color: '#000',
+       fontWeight: 'bold',
+       fontSize: 20
    },
    itemLicenceNo: {
-       color: '#fff',
-       fontWeight: 'bold'
+       color: '#E24244',
+       fontWeight: 'bold',
+       fontSize: 20
    }
 });
