@@ -66,9 +66,9 @@ export default class LoginScreen extends React.Component {
         return (
             <ScrollView style={styles.root}>
                 <LoginHeader navigation={this.props.navigation}/>
-                <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 30}}>
-                    <View style={{width: 150, height: 150,backgroundColor: configs.theme,borderRadius:10}}>
-                    <Image source={require('../assets/icons/login_logo.png')} style={{width: 150, height: 150}}/>
+                <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 10, marginBottom: 10}}>
+                    <View style={{width: 150, height: 150, backgroundColor: configs.theme, borderRadius: 10}}>
+                        <Image source={require('../assets/icons/login_logo.png')} style={{width: 150, height: 150}}/>
                     </View>
                 </View>
                 <View style={{flexDirection: "row", width: "100%"}}>

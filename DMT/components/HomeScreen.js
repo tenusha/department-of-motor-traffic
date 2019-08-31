@@ -1,5 +1,5 @@
 import React from 'react'
-import {AsyncStorage, Image, ScrollView, Text} from 'react-native'
+import {AsyncStorage, Image, ScrollView, Text, View} from 'react-native'
 import {Button, Card, Icon} from "react-native-elements"
 import Footer from './commons/Footer'
 import RevenueLicense from './RevenueLicense'
@@ -28,6 +28,12 @@ export default class HomeScreen extends React.Component {
             <>
                 <AppHeader {...this.props} title={'DMT'}/>
                 <ScrollView>
+                    {/*<View style={{backgroundColor: configs.theme}}>*/}
+                        {/*<Image*/}
+                            {/*source={require('../assets/home_logo.png')}*/}
+                            {/*style={{width: "100%", height: 105}}*/}
+                        {/*/>*/}
+                    {/*</View>*/}
                     <Card
                         onPress={() => navigate('OngoingNumbers')}
                         title='Ongoing Numbers'

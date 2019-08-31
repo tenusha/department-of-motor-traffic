@@ -63,7 +63,7 @@ export default class RevenueLicense extends React.Component {
     render() {
         const {navigate} = this.props.navigation;
         const data = this.state.License_Expiry_Date ?
-            <>
+            <View>
                 <View
                     style={{
                         borderBottomColor: '#D3D3D3',
@@ -76,16 +76,43 @@ export default class RevenueLicense extends React.Component {
                 <Card
                     title={"Vehicle Number : " + this.state.vehicle}
                     titleStyle={{fontSize: 18}}>
-                    <Text style={{marginBottom: 25}}>License Issued Date : <Text
-                        style={{color: "rgb(0,102,102)"}}>{this.state.License_Issued_Date}</Text></Text>
-                    <Text style={{marginBottom: 25}}>Vehicle Reg No : <Text
-                        style={{color: "rgb(0,102,102)"}}>{this.state.Vehicle_Reg_No}</Text></Text>
-                    <Text style={{marginBottom: 25}}>License Expiry Date : <Text
-                        style={{color: "rgb(0,102,102)"}}>{this.state.License_Expiry_Date}</Text></Text>
-                    <Text style={{marginBottom: 25}}>License No : <Text
-                        style={{color: "rgb(0,102,102)"}}>{this.state.License_No}</Text></Text>
+                    <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                        <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Issued Date </Text></View>
+                        <View style={{
+                            flex: 1,
+                            alignSelf: 'stretch'
+                        }}><Text
+                            style={{color: "rgb(0,102,102)"}}>: {this.state.License_Issued_Date}</Text></View>
+                    </View>
+                    <Text/>
+                    <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                        <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Reg No </Text></View>
+                        <View style={{
+                            flex: 1,
+                            alignSelf: 'stretch'
+                        }}><Text
+                            style={{color: "rgb(0,102,102)"}}>: {this.state.Vehicle_Reg_No}</Text></View>
+                    </View>
+                    <Text/>
+                    <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                        <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Expiry Date </Text></View>
+                        <View style={{
+                            flex: 1,
+                            alignSelf: 'stretch'
+                        }}><Text
+                            style={{color: "rgb(0,102,102)"}}>: {this.state.License_Expiry_Date}</Text></View>
+                    </View>
+                    <Text/>
+                    <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                        <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License No </Text></View>
+                        <View style={{
+                            flex: 1,
+                            alignSelf: 'stretch'
+                        }}><Text
+                            style={{color: "rgb(0,102,102)"}}>: {this.state.License_No}</Text></View>
+                    </View>
                 </Card>
-            </> : null
+            </View> : null
 
         return (
             <View>
