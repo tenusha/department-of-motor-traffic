@@ -261,7 +261,7 @@ export default class MyVehicles extends React.Component {
                         </View>
                     </Card>
                 })}
-                {this.state.displayVehicles.length == 0 &&
+                {this.state.displayVehicles.length === 0 &&
                 <Card>
                     <Text style={{marginBottom: 25}}>You don't have any vehicles yet. Please add a vehicle.</Text>
                 </Card>
