@@ -23,7 +23,7 @@ export default class AppHeader extends React.Component {
             //         onPress={() => this.props.navigation.navigate("Home")}/>}
                 leftComponent={<Icon
                 name={'arrow-back'}
-                color={configs.theme}
+                color={'black'}
                 onPress={() => this.props.navigation.navigate("Home")}
                 />}
             />
