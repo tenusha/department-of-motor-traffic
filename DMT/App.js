@@ -10,12 +10,15 @@ import Reload from './components/commons/Reload'
 import {ScrollView} from 'react-native';
 import {Image} from "react-native-elements";
 import {createAppContainer, createDrawerNavigator, createSwitchNavigator, DrawerItems} from 'react-navigation'
+import FineManagement from "./components/FineManagement";
+
 
 
 export default class App extends React.Component {
 
     render() {
         return (
+
             <AppContainer/>
         );
     }
@@ -54,6 +57,7 @@ const DrawerNavigatorLoginUsers = createDrawerNavigator({
         VehicleDetails: {screen: VehicleDetails},
         RevenueLicense: {screen: RevenueLicense},
         MyVehicles: {screen: MyVehicles},
+        FineManagement: {screen: FineManagement},
         Logout: {screen: Logout}
     },
     {
