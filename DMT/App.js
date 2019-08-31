@@ -11,6 +11,7 @@ import {ScrollView, View} from 'react-native';
 import {Image} from "react-native-elements";
 import {createAppContainer, createDrawerNavigator, createSwitchNavigator, DrawerItems} from 'react-navigation'
 import configs from "./config.json"
+import SignInScreen from "./components/SignInScreen";
 
 
 export default class App extends React.Component {
@@ -81,6 +82,7 @@ const DrawerNavigatorLoginUsers = createDrawerNavigator({
 
 const SwitchNavigator = createSwitchNavigator({
         Reload: {screen: Reload},
+        SignIn : SignInScreen,
         App: DrawerNavigator,
         UserApp: DrawerNavigatorLoginUsers
     },

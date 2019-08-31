@@ -6,6 +6,7 @@ import {addUserVehicle, getUserVehicleDetails, getUserVehicles, removeUserVehicl
 import LoadingScreen from "./commons/LoadingScreen";
 import CustomTextField from "./commons/CustomTextField"
 import configs from "../config";
+import CustomButton from "./commons/CustomButton"
 
 export default class MyVehicles extends React.Component {
     static navigationOptions = {
@@ -159,16 +160,14 @@ export default class MyVehicles extends React.Component {
                                  value={this.state.vehicleNo}
                                  handleChange={(value) => this.handleChange('vehicleNo', value)}/>
                 <View style={{alignItems: 'flex-end'}}>
-                    <Button
-                        title="Add new vehicle"
-                        type="outline"
-                        onPress={this.handleSubmit}
-                        containerStyle={{width: 150, height: 36, marginTop: 20, marginRight: 10}}
-                        buttonStyle={{borderColor: configs.theme}}
-                        titleStyle={{
-                            color: configs.theme
-                        }}
-                    />
+                    <CustomButton style={styles.materialButtonPrimary} title={'Add new vehicle'}
+                                  handleClick={this.handleSubmit}/>
+                    {/*<Button*/}
+                        {/*title="Add new vehicle"*/}
+                        {/*onPress={this.handleSubmit}*/}
+                        {/*containerStyle={{width: 150, height: 36, marginTop: 20, marginRight: 10}}*/}
+                        {/*buttonStyle={{borderColor: configs.buttonCol}}*/}
+                    {/*/>*/}
                 </View>
                 <View
                     style={{
@@ -288,5 +287,10 @@ const styles = StyleSheet.create({
         padding: 10,
         width: "100%",
         height: 100,
+    },
+    materialButtonPrimary: {
+        width: 150,
+        height: 36,
+        margin: 10
     }
 });
