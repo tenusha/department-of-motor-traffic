@@ -1,6 +1,21 @@
 import React from 'react';
-import {Image, Text} from 'react-native';
+import {Image, Text, FlatList, Dimensions, View, StyleSheet} from 'react-native';
 import AppHeader from "./commons/AppHeader";
+
+const data = [
+    {key: 'A', image: ''}, {key: 'B',  image: ''}, {key: 'B',  image: ''}, {key: 'C',  image: ''}, {key: 'D',  image: ''}, {key: 'E',  image: ''}, {key: 'F',  image: ''}, {key: 'G',  image: ''}, {key: 'H',  image: ''}, {key: 'I',  image: ''}
+];
+
+const formatData = (data, numOfColumns) => {
+    const numberOfFullRows = Math.floor(data.length / numOfColumns);
+
+    let numOfElementsInLastRow = data.length - (numberOfFullRows * numOfColumns);
+    while(numOfElementsInLastRow !== numOfColumns && numOfElementsInLastRow !== 0) {
+        // data.push({key: `blank-${numOfElementsInLastRow}`, empty: true});
+        numOfElementsInLastRow = numOfElementsInLastRow + 1;
+    }
+    return data;
+};
 
 export default class OngoingNumbers extends React.Component {
     static navigationOptions = {
@@ -10,13 +25,63 @@ export default class OngoingNumbers extends React.Component {
         )
     };
 
+    renderItem = ({item, index}) => {
+      if(item.empty === true){
+          return <View style={[styles.item, styles.itemInvisible]}/>
+      }
+      return (
+          <>
+            <View style={styles.item}>
+                <Image source={require('../assets/icon.png')} style={styles.itemImage}/>
+                <Text style={styles.itemText}>{item.key}</Text>
+                <Text>The current number is:</Text>
+                <Text style={styles.itemLicenceNo}>{"XC-345543"}</Text>
+            </View>
+          </>
+      )
+    };
+
     render() {
         const {navigate} = this.props.navigation;
         return (
             <>
-                <AppHeader {...this.props} title={'Ongoing Numbers'}/>
-                <Text>Ongoing Numbers</Text>
+                <AppHeader {...this.props} title={'Ongoing numbers'}/>
+                <FlatList
+                    data={formatData(data,2)}
+                    style={styles.container}
+                    renderItem={this.renderItem}
+                    numColumns={2}
+                />
             </>
         );
     }
 }
+
+const styles = StyleSheet.create({
+   container: {
+       flex: 1,
+       marginVertical: 20,
+   },
+   item: {
+       backgroundColor: '#4f4f4f',
+       alignItems: 'center',
+       justifyContent: 'center',
+       flex: 1,
+       margin: 1,
+       height: Dimensions.get('window').width / 2,
+   },
+   itemImage: {
+       width:  Dimensions.get('window').width / 2 - 30,
+       height:  Dimensions.get('window').width / 2 - 65
+   },
+   itemInvisible: {
+        backgroundColor: 'transparent'
+   },
+   itemText: {
+       color: '#fff'
+   },
+   itemLicenceNo: {
+       color: '#fff',
+       fontWeight: 'bold'
+   }
+});
