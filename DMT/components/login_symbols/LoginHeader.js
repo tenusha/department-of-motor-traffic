@@ -1,6 +1,5 @@
 import React from 'react'
-import { Header, Icon} from "react-native-elements"
-import configs from "../../config"
+import {Header, Icon} from "react-native-elements"
 
 export default class AppHeader extends React.Component {
 

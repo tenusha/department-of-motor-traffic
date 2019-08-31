@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, View, AsyncStorage, ScrollView} from 'react-native';
+import {Image, StyleSheet, View, AsyncStorage, ScrollView, ToastAndroid} from 'react-native';
 import MaterialButtonPrimary1 from "./login_symbols/MaterialButtonPrimary1";
 import MaterialButtonViolet from "./login_symbols/MaterialButtonViolet";
 import MaterialCheckboxWithLabel1 from "./login_symbols/MaterialCheckboxWithLabel1";
@@ -7,7 +7,6 @@ import MaterialButtonWithVioletText1 from "./login_symbols/MaterialButtonWithVio
 import LoginTextBox from "./login_symbols/LoginTextBox";
 import LoginHeader from "./login_symbols/LoginHeader";
 import {registerForPushNotificationsAsync} from "./functions/DmtNotification";
-import * as ToastAndroid from "react-native";
 import configs from "../config";
 
 export default class LoginScreen extends React.Component {
@@ -19,7 +18,7 @@ export default class LoginScreen extends React.Component {
     };
 
     state = {
-        username: '',
+        email: '',
         password: '',
         remember: false
     }
@@ -30,27 +29,35 @@ export default class LoginScreen extends React.Component {
 
     handleSubmit = async () => {
         // TODO
-        console.log("login clicked")
+       if(this.state.email && this.state.password){
+           const user = {
+               id: 1,
+               fname: "Tenusha",
+               lname: "Guruge",
+               email: "tenusha@gmail.com"
+           }
 
-        const user = {
-            id: 1,
-            fname: "Tenusha",
-            lname: "Guruge",
-            email: "tenusha@gmail.com"
-        }
+           const result = await AsyncStorage.setItem("dmt_user", JSON.stringify(user))
 
-        const result = await AsyncStorage.setItem("dmt_user", JSON.stringify(user))
-
-        registerForPushNotificationsAsync().catch(err => {
-            ToastAndroid.showWithGravityAndOffset(
-                'notification server error!',
-                ToastAndroid.SHORT,
-                ToastAndroid.BOTTOM,
-                25,
-                100,
-            );
-        })
-        this.props.navigation.navigate("Reload")
+           registerForPushNotificationsAsync().catch(err => {
+               ToastAndroid.showWithGravityAndOffset(
+                   'notification server error!',
+                   ToastAndroid.SHORT,
+                   ToastAndroid.BOTTOM,
+                   25,
+                   100,
+               );
+           })
+           this.props.navigation.navigate("Reload")
+       }else{
+           ToastAndroid.showWithGravityAndOffset(
+               'Please fill required fields!',
+               ToastAndroid.SHORT,
+               ToastAndroid.BOTTOM,
+               25,
+               100,
+           );
+       }
     }
 
     handleSignUp = async () => {
@@ -74,15 +81,16 @@ export default class LoginScreen extends React.Component {
                 <View style={{flexDirection: "row", width: "100%"}}>
                     <Image source={require('../assets/icons/username.png')}
                            style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
-                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'username'}
-                                  value={this.state.username}
-                                  handleChange={(value) => this.handleChange('username', value)}/>
+                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'Email'}
+                                  value={this.state.email}
+                                  handleChange={(value) => this.handleChange('email', value)}/>
                 </View>
                 <View style={{flexDirection: "row", width: "100%"}}>
                     <Image source={require('../assets/icons/password.png')}
                            style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
-                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'password'}
+                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'Password'}
                                   value={this.state.password}
+                                  type={'password'}
                                   handleChange={(value) => this.handleChange('password', value)}/>
                 </View>
                 <MaterialCheckboxWithLabel1 style={styles.materialCheckboxWithLabel1} label={"Remember me"}

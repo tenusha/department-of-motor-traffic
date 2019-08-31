@@ -1,11 +1,10 @@
 import React from 'react';
-import {AsyncStorage, Image, ScrollView, StyleSheet, Text, ToastAndroid, View, Alert} from 'react-native';
+import {Alert, AsyncStorage, Image, ScrollView, StyleSheet, Text, ToastAndroid, View} from 'react-native';
 import {Button, Card, Icon} from "react-native-elements"
 import AppHeader from "./commons/AppHeader";
 import {addUserVehicle, getUserVehicleDetails, getUserVehicles, removeUserVehicle} from "./functions/Services";
 import LoadingScreen from "./commons/LoadingScreen";
 import CustomTextField from "./commons/CustomTextField"
-import configs from "../config";
 import CustomButton from "./commons/CustomButton"
 
 export default class MyVehicles extends React.Component {

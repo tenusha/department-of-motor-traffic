@@ -1,11 +1,9 @@
 import React from 'react';
-import {Image, StyleSheet, View, ScrollView, TouchableHighlight, ToastAndroid} from 'react-native';
+import {Image, ScrollView, StyleSheet, ToastAndroid, TouchableHighlight, View} from 'react-native';
 import MaterialButtonPrimary1 from "./login_symbols/MaterialButtonPrimary1";
 import MaterialButtonViolet from "./login_symbols/MaterialButtonViolet";
-import MaterialCheckboxWithLabel1 from "./login_symbols/MaterialCheckboxWithLabel1";
 import LoginTextBox from "./login_symbols/LoginTextBox";
 import LoginHeader from "./login_symbols/LoginHeader";
-import configs from "../config";
 
 export default class LoginScreen extends React.Component {
     static navigationOptions = {
@@ -16,11 +14,10 @@ export default class LoginScreen extends React.Component {
     };
 
     state = {
-        username: '',
+        email: '',
         password: '',
         rpassword: '',
-        license: '',
-        remember: false
+        license: ''
     }
 
     handleChange = (name, value) => {
@@ -28,14 +25,26 @@ export default class LoginScreen extends React.Component {
     }
 
     handleSubmit = async () => {
-        this.props.navigation.navigate("Login")
-        ToastAndroid.showWithGravityAndOffset(
-            'Registration successful! please login...',
-            ToastAndroid.SHORT,
-            ToastAndroid.BOTTOM,
-            25,
-            100,
-        );
+        const data = this.state
+        if (data.license && data.email && data.password && data.rpassword) {
+            this.props.navigation.navigate("Login")
+            ToastAndroid.showWithGravityAndOffset(
+                'Registration successful! please login...',
+                ToastAndroid.SHORT,
+                ToastAndroid.BOTTOM,
+                25,
+                100,
+            );
+        } else {
+            ToastAndroid.showWithGravityAndOffset(
+                'Please fill required fields!',
+                ToastAndroid.SHORT,
+                ToastAndroid.BOTTOM,
+                25,
+                100,
+            );
+        }
+
     }
 
     handleLogin = async () => {
@@ -61,36 +70,38 @@ export default class LoginScreen extends React.Component {
                 <View style={{flexDirection: "row", width: "100%"}}>
                     <Image source={require('../assets/icons/revenue_license.png')}
                            style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
-                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'driving license number'}
+                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'Driving license number'}
                                   value={this.state.license}
                                   handleChange={(value) => this.handleChange('license', value)}/>
                 </View>
                 <View style={{flexDirection: "row", width: "100%"}}>
                     <Image source={require('../assets/icons/username.png')}
                            style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
-                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'username'}
-                                  value={this.state.username}
-                                  handleChange={(value) => this.handleChange('username', value)}/>
+                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'Email'}
+                                  value={this.state.email}
+                                  handleChange={(value) => this.handleChange('email', value)}/>
                 </View>
                 <View style={{flexDirection: "row", width: "100%"}}>
                     <Image source={require('../assets/icons/password.png')}
                            style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
-                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'password'}
+                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'Password'}
                                   value={this.state.password}
                                   type={'password'}
                                   handleChange={(value) => this.handleChange('password', value)}/>
                 </View>
-                <View style={{flexDirection: "row", width: "100%", marginBottom:20}}>
+                <View style={{flexDirection: "row", width: "100%", marginBottom: 20}}>
                     <Image source={require('../assets/icons/password.png')}
                            style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
-                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'re-enter password'}
+                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'Re-enter password'}
                                   value={this.state.rpassword}
                                   type={'password'}
                                   handleChange={(value) => this.handleChange('rpassword', value)}/>
                 </View>
-                <MaterialButtonPrimary1 title={'Register'} style={styles.materialButtonPrimary1} handleSubmit={this.handleSubmit}/>
-                <MaterialButtonViolet title={'Login'} style={styles.materialButtonViolet} handleClick={this.handleLogin}/>
-                <View style={{marginBottom:20}}/>
+                <MaterialButtonPrimary1 title={'Register'} style={styles.materialButtonPrimary1}
+                                        handleSubmit={this.handleSubmit}/>
+                <MaterialButtonViolet title={'Login'} style={styles.materialButtonViolet}
+                                      handleClick={this.handleLogin}/>
+                <View style={{marginBottom: 20}}/>
             </ScrollView>
         );
     }
