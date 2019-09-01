@@ -11,6 +11,8 @@ import {ScrollView, View} from 'react-native';
 import {Image} from "react-native-elements";
 import {createAppContainer, createDrawerNavigator, createSwitchNavigator, DrawerItems} from 'react-navigation'
 import configs from "./config.json"
+import FineManagement from "./components/FineManagement";
+
 import SignInScreen from "./components/SignInScreen";
 
 
@@ -63,6 +65,7 @@ const DrawerNavigatorLoginUsers = createDrawerNavigator({
         VehicleDetails: {screen: VehicleDetails},
         RevenueLicense: {screen: RevenueLicense},
         MyVehicles: {screen: MyVehicles},
+        FineManagement: {screen: FineManagement},
         Logout: {screen: Logout}
     },
     {
