@@ -8,10 +8,7 @@ import {Avatar} from "react-native-elements";
 
 export default class LoginScreen extends React.Component {
     static navigationOptions = {
-        title: 'Login',
-        drawerIcon: (
-            <Image source={require('../assets/icons/login_black.png')} style={{width: 24, height: 24}}/>
-        )
+        title: 'SignIn'
     };
 
     state = {
