@@ -69,7 +69,7 @@ export default class LoginScreen extends React.Component {
 
                     {/*</TouchableHighlight>*/}
                     <Avatar
-                        size="xlarge"
+                        size={130}
                         rounded
                         overlayContainerStyle={{backgroundColor: 'white'}}
                         source={require('../assets/icons/user_reg3.png')}
