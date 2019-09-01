@@ -14,6 +14,7 @@ import configs from "./config.json"
 import FineManagement from "./components/FineManagement";
 
 import SignInScreen from "./components/SignInScreen";
+import PaymentGateway from "./components/PaymentGateway";
 
 
 export default class App extends React.Component {
@@ -85,7 +86,8 @@ const DrawerNavigatorLoginUsers = createDrawerNavigator({
 
 const SwitchNavigator = createSwitchNavigator({
         Reload: {screen: Reload},
-        SignIn : SignInScreen,
+        SignIn: SignInScreen,
+        PaymentGateway: PaymentGateway,
         App: DrawerNavigator,
         UserApp: DrawerNavigatorLoginUsers
     },

@@ -111,7 +111,7 @@ export default class HomeScreen extends React.Component {
                                 marginBottom: 0,
                                 borderWidth: 0
                             }}
-                            onPress={() => navigate('OngoingNumbers')}
+                            onPress={() => navigate('PaymentGateway')}
                             title=' PAY NOW'/>
                     </Card>
 
