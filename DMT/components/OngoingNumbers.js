@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image, Text, FlatList, Dimensions, View, StyleSheet} from 'react-native';
 import AppHeader from "./commons/AppHeader";
+import configs from "../config";
 
 const data = [
     {key: 'CAR', img: require('../assets/OngoingNumberIcons/carIcon.png')},
@@ -59,7 +60,7 @@ export default class OngoingNumbers extends React.Component {
             <>
                 <AppHeader {...this.props} title={'Ongoing numbers'}/>
                 <FlatList
-                    contentContainerStyle={{paddingBottom: 30}}
+                    contentContainerStyle={{paddingBottom: 0}}
                     data={formatData(data, 2)}
                     style={styles.container}
                     renderItem={this.renderItem}
@@ -82,12 +83,13 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 2,
         borderWidth: 1,
-        borderColor: '#E24244',
+        borderColor: configs.theme,
         height: Dimensions.get('window').width / 2,
     },
     itemImage: {
         width: Dimensions.get('window').width / 2 - 60,
         height: Dimensions.get('window').width / 2 - 150,
+        marginBottom: 10,
         resizeMode: 'contain'
     },
     itemInvisible: {
@@ -96,12 +98,12 @@ const styles = StyleSheet.create({
     itemText: {
         color: '#000',
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 16,
         textAlign: 'center',
         marginBottom: 10
     },
     itemLicenceNo: {
-        color: '#E24244',
+        color: configs.theme,
         fontWeight: 'bold',
         fontSize: 20
     }
