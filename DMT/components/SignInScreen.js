@@ -4,6 +4,7 @@ import MaterialButtonPrimary1 from "./login_symbols/MaterialButtonPrimary1";
 import MaterialButtonViolet from "./login_symbols/MaterialButtonViolet";
 import LoginTextBox from "./login_symbols/LoginTextBox";
 import LoginHeader from "./login_symbols/LoginHeader";
+import {Avatar} from "react-native-elements";
 
 export default class LoginScreen extends React.Component {
     static navigationOptions = {
@@ -61,11 +62,19 @@ export default class LoginScreen extends React.Component {
             <ScrollView style={styles.root}>
                 <LoginHeader navigation={this.props.navigation}/>
                 <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 10, marginBottom: 10}}>
-                    <TouchableHighlight
-                        style={styles.profileImgContainer}
-                    >
-                        <Image source={require('../assets/icons/user_reg.png')} style={styles.profileImg}/>
-                    </TouchableHighlight>
+                    {/*<TouchableHighlight*/}
+                    {/*style={styles.profileImgContainer}*/}
+                    {/*>*/}
+                    {/*<Image source={require('../assets/icons/user_reg.png')} style={styles.profileImg} showEditButton/>*/}
+
+                    {/*</TouchableHighlight>*/}
+                    <Avatar
+                        size="xlarge"
+                        rounded
+                        overlayContainerStyle={{backgroundColor: 'white'}}
+                        source={require('../assets/icons/user_reg3.png')}
+                        showEditButton
+                    />
                 </View>
                 <View style={{flexDirection: "row", width: "100%"}}>
                     <Image source={require('../assets/icons/revenue_license.png')}

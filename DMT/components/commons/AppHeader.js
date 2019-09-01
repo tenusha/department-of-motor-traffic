@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Header, Icon} from "react-native-elements"
+import {Button, Header, Icon, Avatar} from "react-native-elements"
 import {AsyncStorage, Image} from "react-native"
 import configs from "../../config.json"
 
@@ -17,10 +17,15 @@ export default class AppHeader extends React.Component {
     }
 
     render() {
+        //<Image source={require('../../assets/icons/logged_user.png')} style={{width: 30, height: 30}}/>
         const userIcon = this.state.user ?
-            <Image source={require('../../assets/icons/logged_user.png')} style={{width: 30, height: 30}}/> :
+            <Avatar
+                rounded
+                style={{width: 35, height: 35}}
+                source={{uri: 'https://i.ibb.co/FBb2h5k/RAN-PRO-11.jpg'}}
+            /> :
             <Image source={require('../../assets/icons/login.png')} style={{width: 30, height: 30}}/>
-        const navigateTo = this.state.user ? "Home" : "Login"
+        const navigateTo = this.state.user ? "MyVehicles" : "Login"
         const centerComponent = this.props.title === 'DMT' ? <Button
             type="clear"
             icon={<Image source={require('../../assets/home_logo.png')} style={{width: 130, height: 45}}/>}
