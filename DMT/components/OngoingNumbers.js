@@ -96,7 +96,8 @@ const styles = StyleSheet.create({
    itemText: {
        color: '#000',
        fontWeight: 'bold',
-       fontSize: 25
+       fontSize: 20,
+       textAlign: 'center'
    },
    itemLicenceNo: {
        color: '#E24244',
