@@ -193,35 +193,11 @@ export default class MyVehicles extends React.Component {
                         />
                         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                             <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Issued Date </Text></View>
-                                <View style={{
-                                    flex: 1,
-                                    alignSelf: 'stretch'
-                                }}><Text
-                                    style={{fontWeight: "bold"}}>: {vehicle.License_Issued_Date}</Text></View>
-                            </View>
-                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Expiry Date </Text></View>
-                                <View style={{
-                                    flex: 1,
-                                    alignSelf: 'stretch'
-                                }}><Text
-                                    style={{fontWeight: "bold"}}>: {vehicle.License_Expiry_Date}</Text></View>
-                            </View>
-                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
                                 <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Reg No </Text></View>
                                 <View style={{
                                     flex: 1,
                                     alignSelf: 'stretch'
                                 }}><Text style={{fontWeight: "bold"}}>: {vehicle.Vehicle_Reg_No}</Text></View>
-                            </View>
-                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License No </Text></View>
-                                <View style={{
-                                    flex: 1,
-                                    alignSelf: 'stretch'
-                                }}><Text
-                                    style={{fontWeight: "bold"}}>: {vehicle.License_No}</Text></View>
                             </View>
                             <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
                                 <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Make and Model </Text></View>
@@ -237,6 +213,38 @@ export default class MyVehicles extends React.Component {
                                     alignSelf: 'stretch'
                                 }}><Text
                                     style={{fontWeight: "bold"}}>: {vehicle.model_year}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Body Type </Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{fontWeight: "bold"}}>: {vehicle.body_type}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License No </Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{fontWeight: "bold"}}>: {vehicle.License_No}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Issued Date </Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{fontWeight: "bold"}}>: {vehicle.License_Issued_Date}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Expiry Date </Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{fontWeight: "bold"}}>: {vehicle.License_Expiry_Date}</Text></View>
                             </View>
                             <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
                                 <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Fines this week </Text></View>

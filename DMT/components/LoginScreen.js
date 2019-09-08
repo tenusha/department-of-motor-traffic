@@ -31,7 +31,7 @@ export default class LoginScreen extends React.Component {
         // TODO
        if(this.state.email && this.state.password){
            const user = {
-               id: 1,
+               id: "1",
                fname: "Tenusha",
                lname: "Guruge",
                email: "tenusha@gmail.com"
