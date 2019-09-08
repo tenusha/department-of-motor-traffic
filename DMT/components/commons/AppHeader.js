@@ -22,7 +22,7 @@ export default class AppHeader extends React.Component {
             <Avatar
                 rounded
                 style={{width: 35, height: 35}}
-                source={{uri: 'https://i.ibb.co/FBb2h5k/RAN-PRO-11.jpg'}}
+                source={{uri: this.state.user.profilePic}}
             /> :
             <Image source={require('../../assets/icons/login.png')} style={{width: 30, height: 30}}/>
         const navigateTo = this.state.user ? "MyVehicles" : "Login"
