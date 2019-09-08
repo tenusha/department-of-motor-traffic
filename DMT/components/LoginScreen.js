@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, View, AsyncStorage, ScrollView, ToastAndroid} from 'react-native';
+import {Image, StyleSheet, View, AsyncStorage, ScrollView, ToastAndroid, Text} from 'react-native';
 import MaterialButtonPrimary1 from "./login_symbols/MaterialButtonPrimary1";
 import MaterialButtonViolet from "./login_symbols/MaterialButtonViolet";
 import MaterialCheckboxWithLabel1 from "./login_symbols/MaterialCheckboxWithLabel1";
@@ -8,6 +8,7 @@ import LoginTextBox from "./login_symbols/LoginTextBox";
 import LoginHeader from "./login_symbols/LoginHeader";
 import {registerForPushNotificationsAsync} from "./functions/DmtNotification";
 import configs from "../config";
+import {Divider, SocialIcon} from "react-native-elements";
 
 export default class LoginScreen extends React.Component {
     static navigationOptions = {
@@ -81,6 +82,21 @@ export default class LoginScreen extends React.Component {
                         <Image source={require('../assets/icons/login_logo.png')} style={{width: 150, height: 150}}/>
                     </View>
                 </View>
+
+                <SocialIcon
+                    title='Sign In With Facebook'
+                    button
+                    type='facebook'
+                    style={{...styles.socialIcons, marginTop: 20}}
+                />
+                <SocialIcon
+                    title='Sign In With Google'
+                    button
+                    type='google'
+                    style={styles.socialIcons}
+                />
+                <Or/>
+
                 <View style={{flexDirection: "row", width: "100%"}}>
                     <Image source={require('../assets/icons/username.png')}
                            style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
@@ -104,11 +120,48 @@ export default class LoginScreen extends React.Component {
                                       handleClick={this.handleSignUp}/>
 
                 <MaterialButtonWithVioletText1
-                    style={styles.materialButtonWithVioletText1}
+                    style={{...styles.materialButtonWithVioletText1, marginBottom: 20}}
                 />
             </ScrollView>
         );
     }
+}
+
+function Or() {
+    return (
+        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+            <View
+                style={{
+                    flex: 1, alignSelf: 'stretch',
+                    borderBottomColor: 'grey',
+                    borderBottomWidth: 1,
+                    marginLeft: 20
+                }}
+            />
+            <View
+                style={{
+                    width: 20,
+                    marginLeft: 15,
+                    marginRight: 15
+                }}
+            >
+                <Text style={{
+                    textAlign: "center",
+                    color: 'grey',
+                    fontSize: 16,
+                    marginTop: 20
+                }}>or</Text>
+            </View>
+            <View
+                style={{
+                    flex: 1, alignSelf: 'stretch',
+                    borderBottomColor: 'grey',
+                    borderBottomWidth: 1,
+                    marginRight: 20
+                }}
+            />
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -140,5 +193,10 @@ const styles = StyleSheet.create({
     materialButtonWithVioletText1: {
         marginTop: 20,
         height: 36,
+    },
+    socialIcons: {
+        height: 36,
+        marginLeft: 20,
+        marginRight: 20
     }
 });
