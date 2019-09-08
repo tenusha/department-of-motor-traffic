@@ -75,54 +75,58 @@ export default class LoginScreen extends React.Component {
     render() {
         const {navigate} = this.props.navigation;
         return (
-            <ScrollView style={styles.root}>
+            <>
                 <LoginHeader navigation={this.props.navigation}/>
-                <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 10, marginBottom: 10}}>
-                    <View style={{width: 150, height: 150, backgroundColor: configs.theme, borderRadius: 10}}>
-                        <Image source={require('../assets/icons/login_logo.png')} style={{width: 150, height: 150}}/>
+                <ScrollView style={styles.root}>
+                    <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 10, marginBottom: 10}}>
+                        <View style={{width: 150, height: 150, backgroundColor: configs.theme, borderRadius: 10}}>
+                            <Image source={require('../assets/icons/login_logo.png')}
+                                   style={{width: 150, height: 150}}/>
+                        </View>
                     </View>
-                </View>
 
-                <SocialIcon
-                    title='Sign In With Facebook'
-                    button
-                    type='facebook'
-                    style={{...styles.socialIcons, marginTop: 20}}
-                />
-                <SocialIcon
-                    title='Sign In With Google'
-                    button
-                    type='google'
-                    style={styles.socialIcons}
-                />
-                <Or/>
+                    <SocialIcon
+                        title='Sign In With Facebook'
+                        button
+                        type='facebook'
+                        style={{...styles.socialIcons, marginTop: 20}}
+                    />
+                    <SocialIcon
+                        title='Sign In With Google'
+                        button
+                        type='google'
+                        light
+                        style={styles.socialIcons}
+                    />
+                    <Or/>
 
-                <View style={{flexDirection: "row", width: "100%"}}>
-                    <Image source={require('../assets/icons/username.png')}
-                           style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
-                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'Email'}
-                                  value={this.state.email}
-                                  handleChange={(value) => this.handleChange('email', value)}/>
-                </View>
-                <View style={{flexDirection: "row", width: "100%"}}>
-                    <Image source={require('../assets/icons/password.png')}
-                           style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
-                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'Password'}
-                                  value={this.state.password}
-                                  type={'password'}
-                                  handleChange={(value) => this.handleChange('password', value)}/>
-                </View>
-                <MaterialCheckboxWithLabel1 style={styles.materialCheckboxWithLabel1} label={"Remember me"}
-                                            checked={this.state.remember} handleToggle={this.handleToggle}/>
-                <MaterialButtonPrimary1 title={'Login'} style={styles.materialButtonPrimary1}
-                                        handleSubmit={this.handleSubmit}/>
-                <MaterialButtonViolet title={'Sign Up'} style={styles.materialButtonViolet}
-                                      handleClick={this.handleSignUp}/>
+                    <View style={{flexDirection: "row", width: "100%"}}>
+                        <Image source={require('../assets/icons/username.png')}
+                               style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
+                        <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'Email'}
+                                      value={this.state.email}
+                                      handleChange={(value) => this.handleChange('email', value)}/>
+                    </View>
+                    <View style={{flexDirection: "row", width: "100%"}}>
+                        <Image source={require('../assets/icons/password.png')}
+                               style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
+                        <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'Password'}
+                                      value={this.state.password}
+                                      type={'password'}
+                                      handleChange={(value) => this.handleChange('password', value)}/>
+                    </View>
+                    <MaterialCheckboxWithLabel1 style={styles.materialCheckboxWithLabel1} label={"Remember me"}
+                                                checked={this.state.remember} handleToggle={this.handleToggle}/>
+                    <MaterialButtonPrimary1 title={'Login'} style={styles.materialButtonPrimary1}
+                                            handleSubmit={this.handleSubmit}/>
+                    <MaterialButtonViolet title={'Sign Up'} style={styles.materialButtonViolet}
+                                          handleClick={this.handleSignUp}/>
 
-                <MaterialButtonWithVioletText1
-                    style={{...styles.materialButtonWithVioletText1, marginBottom: 20}}
-                />
-            </ScrollView>
+                    <MaterialButtonWithVioletText1
+                        style={{...styles.materialButtonWithVioletText1, marginBottom: 20}}
+                    />
+                </ScrollView>
+            </>
         );
     }
 }
@@ -177,14 +181,14 @@ const styles = StyleSheet.create({
     materialButtonPrimary1: {
         height: 40,
         opacity: 1,
-        marginLeft: 15,
-        marginRight: 15,
+        marginLeft: 20,
+        marginRight: 20,
         marginBottom: 10
     },
     materialButtonViolet: {
         height: 40,
-        marginLeft: 15,
-        marginRight: 15
+        marginLeft: 20,
+        marginRight: 20
     },
     materialCheckboxWithLabel1: {
         margin: 20,
