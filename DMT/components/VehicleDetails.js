@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, ToastAndroid, View} from 'react-native';
 import AppHeader from "./commons/AppHeader";
 import CustomTextField from "./commons/CustomTextField";
 import {Button, Card} from "react-native-elements";
@@ -13,12 +13,34 @@ export default class VehicleDetails extends React.Component {
         )
     };
     state = {
-        display: false
+        display: false,
+        vehicleNo: ''
+
     }
 
-    handleDisplay = () =>{
+    handleChange = (name, value) => {
+        this.setState({[name]: value})
+    }
+
+    handleDisplay = () => {
         this.setState({display: !this.state.display})
     }
+
+    handleSubmit = () => {
+        if (this.state.vehicleNo === '') {
+            ToastAndroid.showWithGravityAndOffset(
+                'Enter Valid Vehicle Number',
+                ToastAndroid.LONG,
+                ToastAndroid.BOTTOM,
+                25,
+                100,
+            );
+        }
+        else{
+            this.handleDisplay()
+        }
+    }
+
     render() {
         const {navigate} = this.props.navigation;
         return (
@@ -28,12 +50,13 @@ export default class VehicleDetails extends React.Component {
                     <CustomTextField style={styles.materialMessageTextbox}
                                      placeholder={'e.g: KA-1010, 15-3456'}
                                      label={'Vehicle Number :'}
-                                     value=''
+                                     value={this.state.vehicleNo}
+                                     handleChange={(value) => this.handleChange('vehicleNo', value)}
                     />
                     <View style={{alignItems: 'flex-end'}}>
                         <Button
                             title="Get Details"
-                            onPress={this.handleDisplay}
+                            onPress={this.handleSubmit}
                             containerStyle={{width: 150, height: 36, marginTop: 20, marginRight: 10}}
                             buttonStyle={{backgroundColor: configs.buttonCol}}
                             titleStyle={{
@@ -53,6 +76,16 @@ export default class VehicleDetails extends React.Component {
                     {this.state.display && <Card
                         title='Vehicle Details'
                         titleStyle={{fontSize: 18}}>
+                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Number</Text></View>
+                            <View style={{
+                                flex: 1,
+                                alignSelf: 'stretch'
+                            }}><Text
+                                style={{
+                                    fontWeight: "bold"
+                                }}>CAQ-6599</Text></View>
+                        </View>
                         <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
                             <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Owner</Text></View>
                             <View style={{
