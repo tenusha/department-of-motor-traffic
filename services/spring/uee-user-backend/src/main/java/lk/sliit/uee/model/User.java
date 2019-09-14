@@ -29,7 +29,7 @@ public class User {
 	@NotBlank
 	private String email;
 	@NotBlank
-	private String mobile;
+	private String license;
 
 	private MultipartFile image;
 
@@ -106,17 +106,17 @@ public class User {
 	}
 
 	/**
-	 * @return the mobile
+	 * @return the license
 	 */
-	public String getMobile() {
-		return mobile;
+	public String getLicense() {
+		return license;
 	}
 
 	/**
-	 * @param mobile the mobile to set
+	 * @param license the license to set
 	 */
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
+	public void setLicense(String license) {
+		this.license = license;
 	}
 
 	/**
@@ -149,8 +149,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [_id=" + _id + ", firstName=" + firstName + ", lastName=" + lastName + ", password=*******, email="
-				+ email + ", mobile=" + mobile + ", image=" + image + ", imagePath=" + imagePath + "]";
+		return "User [_id=" + _id + ", firstName=" + firstName + ", lastName=" + lastName + ", password=******, email="
+				+ email + ", license=" + license + ", image=" + image + ", imagePath=" + imagePath + "]";
 	}
 
 }

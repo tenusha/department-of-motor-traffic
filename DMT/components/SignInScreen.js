@@ -1,10 +1,11 @@
 import React from 'react';
-import {Image, ScrollView, StyleSheet, ToastAndroid, TouchableHighlight, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, ToastAndroid, View} from 'react-native';
 import MaterialButtonPrimary1 from "./login_symbols/MaterialButtonPrimary1";
 import MaterialButtonViolet from "./login_symbols/MaterialButtonViolet";
 import LoginTextBox from "./login_symbols/LoginTextBox";
 import LoginHeader from "./login_symbols/LoginHeader";
 import {Avatar} from "react-native-elements";
+import {registerUser} from "./functions/Services";
 
 export default class LoginScreen extends React.Component {
     static navigationOptions = {
@@ -15,7 +16,9 @@ export default class LoginScreen extends React.Component {
         email: '',
         password: '',
         rpassword: '',
-        license: ''
+        license: '',
+        firstName: '',
+        lastName: ''
     }
 
     handleChange = (name, value) => {
@@ -24,15 +27,52 @@ export default class LoginScreen extends React.Component {
 
     handleSubmit = async () => {
         const data = this.state
-        if (data.license && data.email && data.password && data.rpassword) {
-            this.props.navigation.navigate("Login")
-            ToastAndroid.showWithGravityAndOffset(
-                'Registration successful! please login...',
-                ToastAndroid.SHORT,
-                ToastAndroid.BOTTOM,
-                25,
-                100,
-            );
+        if (data.license && data.email && data.password && data.rpassword && data.firstName && data.lastName) {
+            if (data.password === data.rpassword) {
+                const userObj = {
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    password: data.password,
+                    email: data.email,
+                    license: data.license
+                };
+                await registerUser(userObj).then(async data => {
+                    if (data) {
+                        this.props.navigation.navigate("Login")
+                        ToastAndroid.showWithGravityAndOffset(
+                            'Registration successful! please login...',
+                            ToastAndroid.SHORT,
+                            ToastAndroid.BOTTOM,
+                            25,
+                            100,
+                        );
+                    } else {
+                        ToastAndroid.showWithGravityAndOffset(
+                            'Unable to register new user. please try again !',
+                            ToastAndroid.LONG,
+                            ToastAndroid.BOTTOM,
+                            25,
+                            100,
+                        );
+                    }
+                }).catch(err => {
+                    ToastAndroid.showWithGravityAndOffset(
+                        'Unable to register new user. please try again !',
+                        ToastAndroid.LONG,
+                        ToastAndroid.BOTTOM,
+                        25,
+                        100,
+                    );
+                });
+            } else {
+                ToastAndroid.showWithGravityAndOffset(
+                    'Password and confirm password does not match!',
+                    ToastAndroid.SHORT,
+                    ToastAndroid.BOTTOM,
+                    25,
+                    100,
+                );
+            }
         } else {
             ToastAndroid.showWithGravityAndOffset(
                 'Please fill required fields!',
@@ -42,7 +82,6 @@ export default class LoginScreen extends React.Component {
                 100,
             );
         }
-
     }
 
     handleLogin = async () => {
@@ -74,6 +113,20 @@ export default class LoginScreen extends React.Component {
                     />
                 </View>
                 <View style={{flexDirection: "row", width: "100%"}}>
+                    <Image source={require('../assets/icons/firstName.png')}
+                           style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
+                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'First Name'}
+                                  value={this.state.firstName}
+                                  handleChange={(value) => this.handleChange('firstName', value)}/>
+                </View>
+                <View style={{flexDirection: "row", width: "100%"}}>
+                    <Image source={require('../assets/icons/firstName.png')}
+                           style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
+                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'Last Name'}
+                                  value={this.state.lastName}
+                                  handleChange={(value) => this.handleChange('lastName', value)}/>
+                </View>
+                <View style={{flexDirection: "row", width: "100%"}}>
                     <Image source={require('../assets/icons/revenue_license.png')}
                            style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
                     <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'Driving license number'}
@@ -81,7 +134,7 @@ export default class LoginScreen extends React.Component {
                                   handleChange={(value) => this.handleChange('license', value)}/>
                 </View>
                 <View style={{flexDirection: "row", width: "100%"}}>
-                    <Image source={require('../assets/icons/username.png')}
+                    <Image source={require('../assets/icons/email.png')}
                            style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
                     <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'Email'}
                                   value={this.state.email}

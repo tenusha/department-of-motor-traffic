@@ -25,7 +25,11 @@ export function addUserVehicle(uid,body) {
 }
 
 export function loginUser(body) {
-    return callPost(config.user_backend + '/login', body);
+    return callPost(config.user_backend + '/users/login', body);
+}
+
+export function registerUser(body) {
+    return callPost(config.user_backend + '/users', body);
 }
 
 const callGet = (url) => {

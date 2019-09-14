@@ -19,7 +19,7 @@ public class UserRegDTO {
 	@NotBlank
 	private String email;
 	@NotBlank
-	private String mobile;
+	private String license;
 	private String profilePic;
 
 	/**
@@ -79,17 +79,17 @@ public class UserRegDTO {
 	}
 
 	/**
-	 * @return the mobile
+	 * @return the license
 	 */
-	public String getMobile() {
-		return mobile;
+	public String getLicense() {
+		return license;
 	}
 
 	/**
-	 * @param mobile the mobile to set
+	 * @param license the license to set
 	 */
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
+	public void setLicense(String license) {
+		this.license = license;
 	}
 
 	/**
@@ -108,8 +108,8 @@ public class UserRegDTO {
 
 	@Override
 	public String toString() {
-		return "UserRegDTO [id=" + id + ", fname=" + fname + ", lname=" + lname + ", email=" + email + ", mobile="
-				+ mobile + ", profilePic=" + profilePic + "]";
+		return "UserRegDTO [id=" + id + ", fname=" + fname + ", lname=" + lname + ", email=" + email + ", license="
+				+ license + ", profilePic=" + profilePic + "]";
 	}
 
 }

@@ -95,7 +95,7 @@ public class UserServiceImpl implements UserService {
 		userRegDTO.setFname(user.getFirstName());
 		userRegDTO.setLname(user.getLastName());
 		userRegDTO.setId(String.valueOf(user.get_id()));
-		userRegDTO.setMobile(user.getMobile());
+		userRegDTO.setLicense(user.getLicense());
 		userRegDTO.setProfilePic(user.getImagePath());
 
 		return userRegDTO;
