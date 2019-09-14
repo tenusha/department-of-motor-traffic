@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, View, Text, StyleSheet} from 'react-native';
+import {ScrollView, View, Text, StyleSheet, ToastAndroid} from 'react-native';
 import AppHeader from "./commons/AppHeader";
 import {Button, Card} from "react-native-elements";
 import CustomTextField from "./commons/CustomTextField";
@@ -53,6 +53,20 @@ export default class PaymentGateway extends React.Component {
         }
         else {
             this.setState({[name]: value})
+        }
+    };
+
+    handleSubmit = () => {
+        if(this.state.cardNo === '' || this.state.expDate === '' || this.state.cvvNo === '') {
+            ToastAndroid.showWithGravityAndOffset(
+                'Please fill all the respective fields!',
+                ToastAndroid.SHORT,
+                ToastAndroid.BOTTOM,
+                25,
+                100,
+            );
+        } else {
+
         }
     };
 
@@ -141,6 +155,7 @@ export default class PaymentGateway extends React.Component {
                                 marginBottom: 0,
                                 borderWidth: 0
                             }}
+                            onPress={this.handleSubmit}
                             title='CONFIRM PAYMENT'/>
                     </Card>
                 </ScrollView>
