@@ -1,5 +1,6 @@
 {
   "dmtUrl": "http://172.16.100.150:3001",
+  "user_backend" : "http://localhost:8080/users",
   "theme": "#8B0000",
   "buttonCol": "rgb(92, 166, 220)"
 }
