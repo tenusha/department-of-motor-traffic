@@ -36,8 +36,16 @@ export default class LoginScreen extends React.Component {
                     email: data.email,
                     license: data.license
                 };
-                await registerUser(userObj).then(async data => {
-                    if (data) {
+                await registerUser(userObj).then(async res => {
+                    if (res && res.responseCode === '01') {
+                        ToastAndroid.showWithGravityAndOffset(
+                            res.reason,
+                            ToastAndroid.SHORT,
+                            ToastAndroid.BOTTOM,
+                            25,
+                            100,
+                        );
+                    } else if (res) {
                         this.props.navigation.navigate("Login")
                         ToastAndroid.showWithGravityAndOffset(
                             'Registration successful! please login...',
