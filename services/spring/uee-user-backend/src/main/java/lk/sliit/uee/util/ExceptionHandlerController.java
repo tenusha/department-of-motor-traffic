@@ -34,7 +34,7 @@ public class ExceptionHandlerController {
 	 */
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseBody
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ResponseStatus(HttpStatus.OK)
 	public ErrorResponse handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
 
 		Map<String, String> errorFieldList = new HashMap<>();
