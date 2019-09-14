@@ -43,9 +43,14 @@ public class UserServiceImpl implements UserService {
 	 * This method will return User object using email and password
 	 */
 	@Override
-	public User getByEmailAndPassword(UserDTO userDTO) {
-		userDTO.setPassword(hashPassword(userDTO.getPassword().getBytes()));
-		return userRepository.findByEmailAndPassword(userDTO.getEmail(), userDTO.getPassword()).orElse(null);
+	public UserRegDTO getByEmailAndPassword(UserDTO userDTO) {
+		Optional<User> oUser = userRepository.findByEmailAndPassword(userDTO.getEmail(),
+				hashPassword(userDTO.getPassword().getBytes()));
+		if (oUser.isPresent()) {
+			return convertToDTO(oUser.get());
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -87,11 +92,11 @@ public class UserServiceImpl implements UserService {
 	private UserRegDTO convertToDTO(User user) {
 		UserRegDTO userRegDTO = new UserRegDTO();
 		userRegDTO.setEmail(user.getEmail());
-		userRegDTO.setFirstName(user.getFirstName());
-		userRegDTO.setSecondName(user.getLastName());
-		userRegDTO.setUserId(String.valueOf(user.get_id()));
+		userRegDTO.setFname(user.getFirstName());
+		userRegDTO.setLname(user.getLastName());
+		userRegDTO.setId(String.valueOf(user.get_id()));
 		userRegDTO.setMobile(user.getMobile());
-		userRegDTO.setImagePath(user.getImagePath());
+		userRegDTO.setProfilePic(user.getImagePath());
 
 		return userRegDTO;
 	}

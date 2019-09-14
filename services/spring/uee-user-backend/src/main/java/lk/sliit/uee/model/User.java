@@ -147,4 +147,10 @@ public class User {
 		this.imagePath = imagePath;
 	}
 
+	@Override
+	public String toString() {
+		return "User [_id=" + _id + ", firstName=" + firstName + ", lastName=" + lastName + ", password=*******, email="
+				+ email + ", mobile=" + mobile + ", image=" + image + ", imagePath=" + imagePath + "]";
+	}
+
 }

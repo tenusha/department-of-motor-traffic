@@ -11,57 +11,57 @@ import javax.validation.constraints.NotBlank;
  */
 public class UserRegDTO {
 	@NotBlank
-	private String userId;
+	private String id;
 	@NotBlank
-	private String firstName;
+	private String fname;
 	@NotBlank
-	private String secondName;
+	private String lname;
 	@NotBlank
 	private String email;
 	@NotBlank
 	private String mobile;
-	private String imagePath;
+	private String profilePic;
 
 	/**
-	 * @return the userId
+	 * @return the id
 	 */
-	public String getUserId() {
-		return userId;
+	public String getId() {
+		return id;
 	}
 
 	/**
-	 * @param userId the userId to set
+	 * @param id the id to set
 	 */
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	/**
-	 * @return the firstName
+	 * @return the fname
 	 */
-	public String getFirstName() {
-		return firstName;
+	public String getFname() {
+		return fname;
 	}
 
 	/**
-	 * @param firstName the firstName to set
+	 * @param fname the fname to set
 	 */
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFname(String fname) {
+		this.fname = fname;
 	}
 
 	/**
-	 * @return the secondName
+	 * @return the lname
 	 */
-	public String getSecondName() {
-		return secondName;
+	public String getLname() {
+		return lname;
 	}
 
 	/**
-	 * @param secondName the secondName to set
+	 * @param lname the lname to set
 	 */
-	public void setSecondName(String secondName) {
-		this.secondName = secondName;
+	public void setLname(String lname) {
+		this.lname = lname;
 	}
 
 	/**
@@ -93,17 +93,23 @@ public class UserRegDTO {
 	}
 
 	/**
-	 * @return the imagePath
+	 * @return the profilePic
 	 */
-	public String getImagePath() {
-		return imagePath;
+	public String getProfilePic() {
+		return profilePic;
 	}
 
 	/**
-	 * @param imagePath the imagePath to set
+	 * @param profilePic the profilePic to set
 	 */
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
+
+	@Override
+	public String toString() {
+		return "UserRegDTO [id=" + id + ", fname=" + fname + ", lname=" + lname + ", email=" + email + ", mobile="
+				+ mobile + ", profilePic=" + profilePic + "]";
 	}
 
 }

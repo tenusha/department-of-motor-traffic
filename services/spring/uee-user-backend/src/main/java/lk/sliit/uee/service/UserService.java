@@ -15,7 +15,7 @@ public interface UserService {
 
 	public User getUserById(String id);
 
-	public User getByEmailAndPassword(UserDTO userDTO);
+	public UserRegDTO getByEmailAndPassword(UserDTO userDTO);
 
 	public UserRegDTO getByEmail(String email);
 
