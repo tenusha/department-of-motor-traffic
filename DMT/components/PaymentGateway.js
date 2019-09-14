@@ -3,6 +3,7 @@ import {ScrollView, View, Text, StyleSheet} from 'react-native';
 import AppHeader from "./commons/AppHeader";
 import {Button, Card} from "react-native-elements";
 import CustomTextField from "./commons/CustomTextField";
+import { formatCardNumber, formatExpiryDate } from "./functions/UitilityFunctions";
 
 
 export default class PaymentGateway extends React.Component {
@@ -23,7 +24,36 @@ export default class PaymentGateway extends React.Component {
     };
 
     handleChange = (name, value) => {
-        this.setState({[name]: value})
+
+        if(name === 'expDate') {
+                if(value.length <= 2) {
+                  value = value.replace(/\D/g,'');
+                } else if(value.length > 3){
+                  let temp = value.substring(3).replace(/\D/g,'');
+                  value = value.substring(0,3) + temp;
+                }
+        } else {
+            value = value.replace(/\D/g,'');
+        }
+
+        if(name === 'cardNo') {
+            if(value.length <= 16) {
+                let tempValue = formatCardNumber(value);
+                this.setState({[name]: tempValue})
+            }
+        } else if(name === 'expDate') {
+            if(value.length <= 5) {
+                let tempValue = formatExpiryDate(value);
+                this.setState({[name]: tempValue});
+            }
+        } else if(name === 'cvvNo') {
+            if(value.length <= 3) {
+                this.setState({[name]: value});
+            }
+        }
+        else {
+            this.setState({[name]: value})
+        }
     };
 
     render() {
@@ -74,8 +104,10 @@ export default class PaymentGateway extends React.Component {
                             </View>
                             <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 10}}>
                                 <CustomTextField style={styles.materialMessageTextbox}
+                                             keyboardType={'numeric'}
                                              placeholder={'XXXX-XXXX-XXXX-XXXX'}
                                              label={'Card Number :'}
+                                             maxLength={16}
                                              value={this.state.cardNo}
                                              handleChange={(value) => this.handleChange('cardNo', value)}/>
                             </View>
