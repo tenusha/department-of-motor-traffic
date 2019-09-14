@@ -4,20 +4,20 @@ import AppHeader from "./commons/AppHeader";
 import configs from "../config";
 
 const data = [
-    {key: 'CAR', img: require('../assets/OngoingNumberIcons/carIcon.png')},
-    {key: 'LORRY TRAILER BOWSER', img: require('../assets/OngoingNumberIcons/bigTruckIcon.png')},
-    {key: 'LAND VEHICLE (SMALL)', img: require('../assets/OngoingNumberIcons/buldozerIcon.png')},
-    {key: 'DUAL PURPOSE (COMMERCIAL)', img: require('../assets/OngoingNumberIcons/busIcon.png')},
-    {key: 'NON AGRICULTURAL LAND', img: require('../assets/OngoingNumberIcons/cementIcon.png')},
-    {key: 'COMMERCIAL', img: require('../assets/OngoingNumberIcons/commercialIcon.png')},
-    {key: 'LAND VEHICLE', img: require('../assets/OngoingNumberIcons/excavatorIcon.png')},
-    {key: 'FORK LIFT', img: require('../assets/OngoingNumberIcons/forkLiftIcon.png')},
-    {key: 'MOTOR LORRY (COMMERCIAL)', img: require('../assets/OngoingNumberIcons/lorryIcon.png')},
-    {key: 'SPECIAL PURPOSE', img: require('../assets/OngoingNumberIcons/panzerIcon.png')},
-    {key: 'PRIME MOVER', img: require('../assets/OngoingNumberIcons/primeMoverIcon.png')},
-    {key: 'SINGLE CAB', img: require('../assets/OngoingNumberIcons/singleCabIcon.png')},
-    {key: 'TRACTOR TRAILER BOWSER', img: require('../assets/OngoingNumberIcons/tractorTrailerIcon.png')},
-    {key: 'OTHER', img: require('../assets/OngoingNumberIcons/trailerIcon.png')}
+    {key: 'CAR', img: require('../assets/OngoingNumberIcons/carIcon.png'), licNo: 'LW-2006'},
+    {key: 'LORRY TRAILER BOWSER', img: require('../assets/OngoingNumberIcons/bigTruckIcon.png'), licNo: 'CBI-2956'},
+    {key: 'LAND VEHICLE (SMALL)', img: require('../assets/OngoingNumberIcons/buldozerIcon.png'), licNo: 'LW-2006'},
+    {key: 'DUAL PURPOSE (COMMERCIAL)', img: require('../assets/OngoingNumberIcons/busIcon.png'), licNo: 'ND-9377'},
+    {key: 'NON AGRICULTURAL LAND', img: require('../assets/OngoingNumberIcons/cementIcon.png'), licNo: 'LW-2006'},
+    {key: 'COMMERCIAL', img: require('../assets/OngoingNumberIcons/commercialIcon.png'), licNo: 'PJ-8138'},
+    {key: 'LAND VEHICLE', img: require('../assets/OngoingNumberIcons/excavatorIcon.png'), licNo: 'LV-0345'},
+    {key: 'FORK LIFT', img: require('../assets/OngoingNumberIcons/forkLiftIcon.png'), licNo: 'PZ-0541'},
+    {key: 'MOTOR LORRY (COMMERCIAL)', img: require('../assets/OngoingNumberIcons/lorryIcon.png'), licNo: 'RG-1187'},
+    {key: 'SPECIAL PURPOSE', img: require('../assets/OngoingNumberIcons/panzerIcon.png'), licNo: 'LZ-0219'},
+    {key: 'PRIME MOVER', img: require('../assets/OngoingNumberIcons/primeMoverIcon.png'), licNo: 'LO-2345'},
+    {key: 'SINGLE CAB', img: require('../assets/OngoingNumberIcons/singleCabIcon.png'), licNo: 'DAH-1876'},
+    {key: 'TRACTOR TRAILER BOWSER', img: require('../assets/OngoingNumberIcons/tractorTrailerIcon.png'), licNo: 'ZB-0886'},
+    {key: 'OTHER', img: require('../assets/OngoingNumberIcons/trailerIcon.png'), licNo: 'RY-5467'}
 
 ];
 
@@ -49,7 +49,7 @@ export default class OngoingNumbers extends React.Component {
                 <Image source={item.img} style={styles.itemImage}/>
                 <Text style={styles.itemText}>{item.key}</Text>
                 {/*<Text>The next ongoing number is:</Text>*/}
-                <Text style={styles.itemLicenceNo}>{"XC-345543"}</Text>
+                <Text style={styles.itemLicenceNo}>{item.licenceNo}</Text>
             </View>
         )
     };
