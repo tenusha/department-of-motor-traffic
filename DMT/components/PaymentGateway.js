@@ -20,7 +20,11 @@ export default class PaymentGateway extends React.Component {
         cvvNo: '',
         expDate: '',
         textColor: '#2089dc'
-    }
+    };
+
+    handleChange = (name, value) => {
+        this.setState({[name]: value})
+    };
 
     render() {
         const {navigate} = this.props.navigation;
@@ -72,14 +76,17 @@ export default class PaymentGateway extends React.Component {
                                 <CustomTextField style={styles.materialMessageTextbox}
                                              placeholder={'XXXX-XXXX-XXXX-XXXX'}
                                              label={'Card Number :'}
-                                             value={this.state.cardNo}/>
+                                             value={this.state.cardNo}
+                                             handleChange={(value) => this.handleChange('cardNo', value)}/>
                             </View>
                             <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
                                 <View style={{flex: 5, flexDirection: 'column'}}>
                                     <CustomTextField style={styles.materialMessageTextbox}
                                                  placeholder={'12/23'}
                                                  label={'Expiration Date :'}
-                                                 value={this.state.cardNo}/>
+                                                 value={this.state.expDate}
+                                                 handleChange={(value) => this.handleChange('expDate', value)}
+                                    />
                                 </View>
                                 <View style={{flex: 1}}>
                                 </View>
@@ -88,7 +95,8 @@ export default class PaymentGateway extends React.Component {
                                     <CustomTextField style={styles.materialMessageTextbox}
                                                  placeholder={'123'}
                                                  label={'CCV :'}
-                                                 value={this.state.cardNo}/>
+                                                 value={this.state.cvvNo}
+                                                 handleChange={(value) => this.handleChange('cvvNo', value)} />
                                 </View>
                             </View>
                         </View>
