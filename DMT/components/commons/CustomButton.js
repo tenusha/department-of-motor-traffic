@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import configs from "../../config";
 
 export default class CustomButton extends React.Component {
 
@@ -14,8 +15,7 @@ export default class CustomButton extends React.Component {
 
 const styles = StyleSheet.create({
     root: {
-
-        backgroundColor: "#2196F3",
+        backgroundColor: configs.buttonCol,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",

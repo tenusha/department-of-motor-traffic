@@ -8,6 +8,7 @@ export default class CustomTextField extends React.Component {
             <View style={[styles.root, this.props.style]}>
 
                 <TextInput
+                    secureTextEntry={this.props.type === 'password' ? true : false}
                     placeholder={this.props.placeholder}
                     value={this.props.value}
                     style={[

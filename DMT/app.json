@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "DMT",
-    "slug": "first-rn-app",
+    "slug": "dmt",
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": [

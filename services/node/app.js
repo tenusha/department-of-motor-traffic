@@ -1,8 +1,19 @@
 'use strict'
 const express = require('express')
 const app = express()
+const mongoose = require("mongoose")
 const revenue_license = require('./routers/revenue_license')
 const user_vehicles = require('./routers/user_vehicles')
+
+mongoose.connect("mongodb://localhost:27017/dmt", { useNewUrlParser: true })
+const db = mongoose.connection
+db.on("error", (err) => {
+    console.log("Error : " + err)
+})
+
+db.once("open", () => {
+    console.log("Connected to MongoDB")
+})
 
 app.use(express.json());
 app.use(function (req, res, next) {

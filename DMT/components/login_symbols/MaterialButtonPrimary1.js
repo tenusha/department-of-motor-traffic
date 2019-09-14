@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import {StyleSheet, TouchableOpacity, Text} from "react-native";
+import configs from "../../config";
 
 export default class MaterialButtonPrimary1 extends Component {
     render() {
         return (
             <TouchableOpacity style={[styles.root, this.props.style]} onPress={this.props.handleSubmit}>
-                <Text style={styles.caption}>Login</Text>
+                <Text style={styles.caption}>{this.props.title}</Text>
             </TouchableOpacity>
         );
     }
@@ -13,7 +14,7 @@ export default class MaterialButtonPrimary1 extends Component {
 
 const styles = StyleSheet.create({
     root: {
-        backgroundColor: "#2196F3",
+        backgroundColor: configs.theme,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
