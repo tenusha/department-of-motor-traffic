@@ -6,6 +6,7 @@ import LoginTextBox from "./login_symbols/LoginTextBox";
 import LoginHeader from "./login_symbols/LoginHeader";
 import {Avatar} from "react-native-elements";
 import {registerUser} from "./functions/Services";
+import * as ImagePicker from 'expo-image-picker';
 
 export default class LoginScreen extends React.Component {
     static navigationOptions = {
@@ -18,7 +19,12 @@ export default class LoginScreen extends React.Component {
         rpassword: '',
         license: '',
         firstName: '',
-        lastName: ''
+        lastName: '',
+        image: null,
+    }
+
+    componentDidMount() {
+        // this.getPermissionAsync().catch(err => console.log(err));
     }
 
     handleChange = (name, value) => {
@@ -29,6 +35,8 @@ export default class LoginScreen extends React.Component {
         const data = this.state
         if (data.license && data.email && data.password && data.rpassword && data.firstName && data.lastName) {
             if (data.password === data.rpassword) {
+                const profilePic = new FormData()
+                profilePic.append('photo', {uri: this.state.image, name: this.state.image});
                 const userObj = {
                     firstName: data.firstName,
                     lastName: data.lastName,
@@ -100,8 +108,45 @@ export default class LoginScreen extends React.Component {
         this.setState({remember: !this.state.remember})
     }
 
+    // getPermissionAsync = async () => {
+    //     if (Constants.platform.ios) {
+    //         const {status} = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    //         if (status !== 'granted') {
+    //             alert('Sorry, we need camera roll permissions to make this work!');
+    //         }
+    //     }
+    // }
+
+    _pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+        });
+
+        console.log(result);
+
+        if (!result.cancelled) {
+            this.setState({image: result.uri});
+        }
+    };
+
     render() {
         const {navigate} = this.props.navigation;
+        const avatar = this.state.image ? <Avatar
+            size={130}
+            rounded
+            overlayContainerStyle={{backgroundColor: 'white'}}
+            source={{uri: this.state.image}}
+            showEditButton
+            onPress={this._pickImage}
+        /> : <Avatar
+            size={130}
+            rounded
+            overlayContainerStyle={{backgroundColor: 'white'}}
+            source={require('../assets/icons/user_reg3.png')}
+            showEditButton
+            onPress={this._pickImage}/>
         return (
             <ScrollView style={styles.root}>
                 <LoginHeader navigation={this.props.navigation}/>
@@ -112,13 +157,7 @@ export default class LoginScreen extends React.Component {
                     {/*<Image source={require('../assets/icons/user_reg.png')} style={styles.profileImg} showEditButton/>*/}
 
                     {/*</TouchableHighlight>*/}
-                    <Avatar
-                        size={130}
-                        rounded
-                        overlayContainerStyle={{backgroundColor: 'white'}}
-                        source={require('../assets/icons/user_reg3.png')}
-                        showEditButton
-                    />
+                    {avatar}
                 </View>
                 <View style={{flexDirection: "row", width: "100%"}}>
                     <Image source={require('../assets/icons/firstName.png')}
