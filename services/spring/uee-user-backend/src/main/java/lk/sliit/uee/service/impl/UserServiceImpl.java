@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public UserRegDTO getByEmailAndPassword(UserDTO userDTO) {
-		Optional<User> oUser = userRepository.findByEmailAndPassword(userDTO.getEmail(),
-				hashPassword(userDTO.getPassword().getBytes()));
+		Optional<User> oUser = userRepository.findByEmailAndPassword(userDTO.getEmail().trim(),
+				hashPassword(userDTO.getPassword().trim().getBytes()));
 		if (oUser.isPresent()) {
 			return convertToDTO(oUser.get());
 		} else {

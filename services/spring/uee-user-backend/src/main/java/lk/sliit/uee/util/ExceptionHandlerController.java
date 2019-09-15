@@ -8,6 +8,7 @@ import static java.util.stream.Collectors.toMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -27,6 +28,8 @@ import lk.sliit.uee.response.ErrorResponse;
  */
 @RestControllerAdvice
 public class ExceptionHandlerController {
+
+	private static final String comma = ", ";
 
 	/**
 	 * This method will handle globally thrown MethodArgumentNotValid Exceptions And
@@ -55,15 +58,20 @@ public class ExceptionHandlerController {
 					.collect(toMap(FieldError::getField, FieldError::getDefaultMessage));
 
 			if (!nullFieldList.isEmpty()) {
-				errorResponse.setReason(nullFieldList.toString());
+				errorResponse.setReason(generateReason(nullFieldList));
 			} else {
-				errorResponse.setReason(errorFieldList.toString());
+				errorResponse.setReason(generateReason(errorFieldList));
 			}
 
 		} catch (Exception e) {
 			errorResponse.setReason(e.getMessage());
 		}
 		return errorResponse;
+	}
+
+	private static String generateReason(Map<String, String> list) {
+		return list.entrySet().stream().map(e -> String.format("%s %s", e.getKey(), e.getValue()))
+				.collect(Collectors.joining(comma));
 	}
 
 }
