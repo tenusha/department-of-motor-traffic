@@ -6,6 +6,7 @@ import {addUserVehicle, getUserVehicleDetails, getUserVehicles, removeUserVehicl
 import LoadingScreen from "./commons/LoadingScreen";
 import CustomTextField from "./commons/CustomTextField"
 import CustomButton from "./commons/CustomButton"
+import configs from '../config.json'
 
 export default class MyVehicles extends React.Component {
     static navigationOptions = {
@@ -151,130 +152,141 @@ export default class MyVehicles extends React.Component {
     render() {
         const {navigate} = this.props.navigation;
         return (
-            <ScrollView>
+            <>
                 <AppHeader {...this.props} title={'My Vehicles'}/>
-                <CustomTextField style={styles.materialMessageTextbox}
-                                 placeholder={'e.g: KA-1010, 15-3456'}
-                                 label={'Vehicle Number :'}
-                                 value={this.state.vehicleNo}
-                                 handleChange={(value) => this.handleChange('vehicleNo', value)}/>
-                <View style={{alignItems: 'flex-end'}}>
-                    <CustomButton style={styles.materialButtonPrimary} title={'Add new vehicle'}
-                                  handleClick={this.handleSubmit}/>
-                    {/*<Button*/}
+                <ScrollView>
+                    <CustomTextField style={styles.materialMessageTextbox}
+                                     placeholder={'e.g: KA-1010, 15-3456'}
+                                     label={'Vehicle Number :'}
+                                     value={this.state.vehicleNo}
+                                     handleChange={(value) => this.handleChange('vehicleNo', value)}/>
+                    <View style={{alignItems: 'flex-end'}}>
+                        <CustomButton style={styles.materialButtonPrimary} title={'Add new vehicle'}
+                                      handleClick={this.handleSubmit}/>
+                        {/*<Button*/}
                         {/*title="Add new vehicle"*/}
                         {/*onPress={this.handleSubmit}*/}
                         {/*containerStyle={{width: 150, height: 36, marginTop: 20, marginRight: 10}}*/}
                         {/*buttonStyle={{borderColor: configs.buttonCol}}*/}
-                    {/*/>*/}
-                </View>
-                <View
-                    style={{
-                        borderBottomColor: '#D3D3D3',
-                        borderBottomWidth: 1,
-                        margin: 10,
-                        marginTop: 25
-                    }}
-                />
-
-                {this.state.displayVehicles.length > 0 && this.state.displayVehicles.map((vehicle, i) => {
-                    const barColor = this.getBarColor(vehicle.fines)
-                    return <Card
-                        key={i}>
-                        <Text style={{fontSize: 18, textAlign: 'center', fontWeight: "bold"}}>Vehicle Number
-                            : {vehicle.vehicle}</Text>
-                        <View
-                            style={{
-                                height: 5,
-                                backgroundColor: barColor,
-                                marginTop: 10,
-                                marginBottom: 15
-                            }}
+                        {/*/>*/}
+                    </View>
+                    <View
+                        style={{
+                            borderBottomColor: '#D3D3D3',
+                            borderBottomWidth: 1,
+                            margin: 10,
+                            marginTop: 25
+                        }}
+                    />
+                    <View style={{alignItems: 'flex-end', marginRight: 15}}>
+                        <Icon
+                            name='refresh'
+                            color={configs.buttonCol}
+                            onPress={this.updateData}
                         />
-                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Reg No </Text></View>
-                                <View style={{
-                                    flex: 1,
-                                    alignSelf: 'stretch'
-                                }}><Text style={{fontWeight: "bold"}}>: {vehicle.Vehicle_Reg_No}</Text></View>
+                    </View>
+
+                    {this.state.displayVehicles.length > 0 && this.state.displayVehicles.map((vehicle, i) => {
+                        const barColor = this.getBarColor(vehicle.fines)
+                        return <Card
+                            key={i}>
+                            <Text style={{fontSize: 18, textAlign: 'center', fontWeight: "bold"}}>Vehicle Number
+                                : {vehicle.vehicle}</Text>
+                            <View
+                                style={{
+                                    height: 5,
+                                    backgroundColor: barColor,
+                                    marginTop: 10,
+                                    marginBottom: 15
+                                }}
+                            />
+                            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                                <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                    <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Reg No </Text></View>
+                                    <View style={{
+                                        flex: 1,
+                                        alignSelf: 'stretch'
+                                    }}><Text style={{fontWeight: "bold"}}>: {vehicle.Vehicle_Reg_No}</Text></View>
+                                </View>
+                                <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                    <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Make and Model </Text></View>
+                                    <View style={{
+                                        flex: 1,
+                                        alignSelf: 'stretch'
+                                    }}><Text style={{fontWeight: "bold"}}>: {vehicle.make_and_model}</Text></View>
+                                </View>
+                                <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                    <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Model Year </Text></View>
+                                    <View style={{
+                                        flex: 1,
+                                        alignSelf: 'stretch'
+                                    }}><Text
+                                        style={{fontWeight: "bold"}}>: {vehicle.model_year}</Text></View>
+                                </View>
+                                <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                    <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Body Type </Text></View>
+                                    <View style={{
+                                        flex: 1,
+                                        alignSelf: 'stretch'
+                                    }}><Text
+                                        style={{fontWeight: "bold"}}>: {vehicle.body_type}</Text></View>
+                                </View>
+                                <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                    <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License No </Text></View>
+                                    <View style={{
+                                        flex: 1,
+                                        alignSelf: 'stretch'
+                                    }}><Text
+                                        style={{fontWeight: "bold"}}>: {vehicle.License_No}</Text></View>
+                                </View>
+                                <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                    <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Issued
+                                        Date </Text></View>
+                                    <View style={{
+                                        flex: 1,
+                                        alignSelf: 'stretch'
+                                    }}><Text
+                                        style={{fontWeight: "bold"}}>: {vehicle.License_Issued_Date}</Text></View>
+                                </View>
+                                <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                    <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Expiry
+                                        Date </Text></View>
+                                    <View style={{
+                                        flex: 1,
+                                        alignSelf: 'stretch'
+                                    }}><Text
+                                        style={{fontWeight: "bold"}}>: {vehicle.License_Expiry_Date}</Text></View>
+                                </View>
+                                <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                    <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Fines this week </Text></View>
+                                    <View style={{
+                                        flex: 1,
+                                        alignSelf: 'stretch'
+                                    }}><Text style={{fontWeight: "bold"}}>: {vehicle.fines}</Text></View>
+                                </View>
+                                <View style={{flex: 1, alignSelf: 'flex-end'}}>
+                                    <Button
+                                        icon={<Icon name='delete' color='red'/>}
+                                        title="Remove"
+                                        type="outline"
+                                        onPress={() => this.removeVehicle(vehicle.vehicle)}
+                                        buttonStyle={{borderColor: 'red', paddingRight: 10}}
+                                        titleStyle={{color: 'red'}}
+                                        containerStyle={{width: 100, height: 36}}
+                                    />
+                                </View>
                             </View>
-                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Make and Model </Text></View>
-                                <View style={{
-                                    flex: 1,
-                                    alignSelf: 'stretch'
-                                }}><Text style={{fontWeight: "bold"}}>: {vehicle.make_and_model}</Text></View>
-                            </View>
-                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Model Year </Text></View>
-                                <View style={{
-                                    flex: 1,
-                                    alignSelf: 'stretch'
-                                }}><Text
-                                    style={{fontWeight: "bold"}}>: {vehicle.model_year}</Text></View>
-                            </View>
-                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Body Type </Text></View>
-                                <View style={{
-                                    flex: 1,
-                                    alignSelf: 'stretch'
-                                }}><Text
-                                    style={{fontWeight: "bold"}}>: {vehicle.body_type}</Text></View>
-                            </View>
-                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License No </Text></View>
-                                <View style={{
-                                    flex: 1,
-                                    alignSelf: 'stretch'
-                                }}><Text
-                                    style={{fontWeight: "bold"}}>: {vehicle.License_No}</Text></View>
-                            </View>
-                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Issued Date </Text></View>
-                                <View style={{
-                                    flex: 1,
-                                    alignSelf: 'stretch'
-                                }}><Text
-                                    style={{fontWeight: "bold"}}>: {vehicle.License_Issued_Date}</Text></View>
-                            </View>
-                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Expiry Date </Text></View>
-                                <View style={{
-                                    flex: 1,
-                                    alignSelf: 'stretch'
-                                }}><Text
-                                    style={{fontWeight: "bold"}}>: {vehicle.License_Expiry_Date}</Text></View>
-                            </View>
-                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Fines this week </Text></View>
-                                <View style={{
-                                    flex: 1,
-                                    alignSelf: 'stretch'
-                                }}><Text style={{fontWeight: "bold"}}>: {vehicle.fines}</Text></View>
-                            </View>
-                            <View style={{flex: 1, alignSelf: 'flex-end'}}>
-                                <Button
-                                    icon={<Icon name='delete' color='red'/>}
-                                    title="Remove"
-                                    type="outline"
-                                    onPress={() => this.removeVehicle(vehicle.vehicle)}
-                                    buttonStyle={{borderColor: 'red', paddingRight: 10}}
-                                    titleStyle={{color: 'red'}}
-                                    containerStyle={{width: 100, height: 36}}
-                                />
-                            </View>
-                        </View>
+                        </Card>
+                    })}
+                    {this.state.displayVehicles.length === 0 &&
+                    <Card>
+                        <Text style={{marginBottom: 25}}>You don't have any vehicles yet. Please add a vehicle.</Text>
                     </Card>
-                })}
-                {this.state.displayVehicles.length === 0 &&
-                <Card>
-                    <Text style={{marginBottom: 25}}>You don't have any vehicles yet. Please add a vehicle.</Text>
-                </Card>
-                }
-                <View style={{paddingTop: 30}}/>
-                <LoadingScreen loading={this.state.loading} handleClose={this.handleModalClose}/>
-            </ScrollView>
+                    }
+                    <View style={{paddingTop: 30}}/>
+                    <LoadingScreen loading={this.state.loading} handleClose={this.handleModalClose}/>
+                </ScrollView>
+            </>
         );
     }
 

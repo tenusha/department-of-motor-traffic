@@ -24,6 +24,14 @@ export function addUserVehicle(uid,body) {
     return callPost(config.dmtUrl + '/users/' + uid + "/vehicles/", body);
 }
 
+export function loginUser(body) {
+    return callPost(config.user_backend + '/users/login', body);
+}
+
+export function registerUser(body) {
+    return callPost(config.user_backend + '/users', body);
+}
+
 const callGet = (url) => {
     return fetch(url, {
         method: 'GET',
