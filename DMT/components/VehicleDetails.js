@@ -14,7 +14,27 @@ export default class VehicleDetails extends React.Component {
     };
     state = {
         display: false,
-        vehicleNo: ''
+        vehicleNo: '',
+        vehicleDetails: []
+
+    }
+
+    getVehicle = () => {
+        const PUSH_ENDPOINT = configs.dmtUrl + "/slvehicles/" + this.state.vehicleNo
+        fetch(PUSH_ENDPOINT).then(res => res.json()).then(res => {
+            this.setState({
+                vehicleDetails: res
+            })
+            if (res.length == 0) {
+                ToastAndroid.showWithGravityAndOffset(
+                    'Not a Valid Vehicle Number',
+                    ToastAndroid.LONG,
+                    ToastAndroid.BOTTOM,
+                    25,
+                    100,
+                )
+            }
+        });
 
     }
 
@@ -26,7 +46,7 @@ export default class VehicleDetails extends React.Component {
         this.setState({display: !this.state.display})
     }
 
-    handleSubmit = () => {
+    handleSubmit = async () => {
         if (this.state.vehicleNo === '') {
             ToastAndroid.showWithGravityAndOffset(
                 'Enter Valid Vehicle Number',
@@ -35,9 +55,8 @@ export default class VehicleDetails extends React.Component {
                 25,
                 100,
             );
-        }
-        else{
-            this.handleDisplay()
+        } else {
+            await this.getVehicle()
         }
     }
 
@@ -73,80 +92,83 @@ export default class VehicleDetails extends React.Component {
                         }}
                     />
 
-                    {this.state.display && <Card
-                        title='Vehicle Details'
-                        titleStyle={{fontSize: 18}}>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Number</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold"
-                                }}>CAQ-6599</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Owner</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold"
-                                }}>: T.M.Guruge</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Engine Number</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold"
-                                }}>: H567685</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Class</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold"
-                                }}>: Motor Car</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Manufacturer</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold"
-                                }}>: Toyota</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Model</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold"
-                                }}>: Axia RX</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Year</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold"
-                                }}>: 2018</Text></View>
-                        </View>
-                    </Card>}
+                    {this.state.vehicleDetails.length != 0 && this.state.vehicleDetails.map((vehicle) => {
+                        return <Card
+                            key={vehicle._id}
+                            title='Vehicle Details'
+                            titleStyle={{fontSize: 18}}>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Number</Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{
+                                        fontWeight: "bold"
+                                    }}>: {vehicle.vehicleNumber}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Owner</Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{
+                                        fontWeight: "bold"
+                                    }}>: {vehicle.vehicleOwner}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Engine Number</Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{
+                                        fontWeight: "bold"
+                                    }}>: {vehicle.engineNumber}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Class</Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{
+                                        fontWeight: "bold"
+                                    }}>: {vehicle.class}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Manufacturer</Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{
+                                        fontWeight: "bold"
+                                    }}>: {vehicle.manufacturer}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Model</Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{
+                                        fontWeight: "bold"
+                                    }}>: {vehicle.model}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Year</Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{
+                                        fontWeight: "bold"
+                                    }}>: {vehicle.year}</Text></View>
+                            </View>
+                        </Card>
+                    })}
 
                     <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
                     </View>
