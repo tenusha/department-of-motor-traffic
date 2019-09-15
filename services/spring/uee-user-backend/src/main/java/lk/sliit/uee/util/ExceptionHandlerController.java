@@ -11,6 +11,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageConversionException;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -35,7 +37,8 @@ public class ExceptionHandlerController {
 	 * This method will handle globally thrown MethodArgumentNotValid Exceptions And
 	 * will return an errorResponse
 	 */
-	@ExceptionHandler(MethodArgumentNotValidException.class)
+	@ExceptionHandler({ MethodArgumentNotValidException.class, HttpMessageConversionException.class,
+			HttpMessageNotReadableException.class })
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	public ErrorResponse handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
