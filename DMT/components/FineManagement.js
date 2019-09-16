@@ -2,6 +2,7 @@ import React from "react"
 import {AsyncStorage, Image, ScrollView, Text, View, StyleSheet} from "react-native";
 import AppHeader from "./commons/AppHeader";
 import {Button, Card, Icon, Avatar} from "react-native-elements";
+import configs from "../config";
 
 
 export default class HomeScreen extends React.Component {
@@ -12,8 +13,20 @@ export default class HomeScreen extends React.Component {
         )
     };
 
-    componentDidMount() {
+    state = {
+        fineDetails: [],
+        name: "Ranmal Dewage",
+        licenseDetails: "B54356789",
+        loading: false
+    }
 
+    componentDidMount() {
+        const PUSH_ENDPOINT = configs.dmtUrl + "/fines/"
+        fetch(PUSH_ENDPOINT).then(res => res.json()).then(res => {
+            this.setState({
+                fineDetails: res
+            })
+        });
     }
 
     render() {
@@ -30,156 +43,113 @@ export default class HomeScreen extends React.Component {
                             showEditButton
                         />
                         <View style={{flex: 1, flexDirection: 'column'}}>
-                            <Text style={styles.profileText1}>Name : <Text style={styles.profileText2}>Ranmal
-                                Dewage</Text></Text>
+                            <Text style={styles.profileText1}>Name : <Text
+                                style={styles.profileText2}>{this.state.name}</Text></Text>
                             <Text style={styles.profileText1}>License No : <Text
-                                style={styles.profileText2}>LK262622</Text></Text>
+                                style={styles.profileText2}>{this.state.licenseDetails}</Text></Text>
                         </View>
                     </View>
+                    {this.state.fineDetails.length != 0 && this.state.fineDetails.map((fine) => {
+                        const ref = "REF : " + fine.ref
+                        return <Card
+                            key={fine._id}
+                            title={ref}
+                            titleStyle={{fontSize: 18}}>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Number</Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{
+                                        fontWeight: "bold"
+                                    }}>: {fine.vehicleNumber}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Fined Date</Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{
+                                        fontWeight: "bold"
+                                    }}>: {fine.finedDate}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Fined Place</Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{
+                                        fontWeight: "bold"
+                                    }}>: {fine.finedPlace}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Fine Due Date</Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{
+                                        fontWeight: "bold"
+                                    }}>: {fine.fineDueDate}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Reason</Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{
+                                        fontWeight: "bold"
+                                    }}>: {fine.reason}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Amount</Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{
+                                        fontWeight: "bold",
+                                        color: fine.status === 'PAID' ? "#15B867" : "#E0494C"
+                                    }}>: Rs.{fine.amount}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Status</Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{
+                                        fontWeight: "bold",
+                                        color: fine.status === 'PAID' ? "#15B867" : "#E0494C"
+                                    }}>: {fine.status}</Text></View>
+                            </View>
+                            <View>
+                                {fine.status === "NOT PAID" && <Button
+                                    icon={<Icon type='ionicon' name='ios-card' color='#FFFFFF'/>}
+                                    buttonStyle={{
+                                        backgroundColor: '#15B867',
+                                        borderRadius: 15,
+                                        marginLeft: 0,
+                                        marginRight: 0,
+                                        marginBottom: 0,
+                                        borderWidth: 0
+                                    }}
+                                    onPress={() => navigate('PaymentGateway', {
+                                        name: this.state.name,
+                                        licenseNumber: this.state.licenseDetails,
+                                        ref: fine.ref,
+                                        vno: fine.vehicleNumber,
+                                        amount: fine.amount
+                                    })}
+                                    title=' PAY NOW'/>}
+                            </View>
+                        </Card>
 
-                    <Card
-                        title='REF : 123457544'
-                        titleStyle={{fontSize: 18}}>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Number</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold"
-                                }}>: DCF-7890</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Fined Date</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold"
-                                }}>: 2019/02/16</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Fined Place</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold"
-                                }}>: Colombo 04</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Fine Due Date</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold"
-                                }}>: 2019/03/09</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Reason</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold"
-                                }}>: Not Wearing Seat Belt</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Status</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold",
-                                    color: "#CF4143"
-                                }}>: NOT PAID</Text></View>
-                        </View>
-                        <Button
-                            icon={<Icon type='ionicon' name='ios-card' color='#FFFFFF'/>}
-                            buttonStyle={{
-                                backgroundColor: '#15B867',
-                                borderRadius: 15,
-                                marginLeft: 0,
-                                marginRight: 0,
-                                marginBottom: 0,
-                                borderWidth: 0
-                            }}
-                            onPress={() => navigate('PaymentGateway')}
-                            title=' PAY NOW'/>
-                    </Card>
-
-                    <Card
-                        title='REF : 175647544'
-                        titleStyle={{fontSize: 18}}>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Number</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold"
-                                }}>: DCF-7890</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Fined Date</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold"
-                                }}>: 2018/05/16</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Fined Place</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold"
-                                }}>: Colombo 10</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Fine Due Date</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold"
-                                }}>: 2018/06/14</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Reason</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold"
-                                }}>: Parking Near Pedestrian Crossing</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Status</Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{
-                                    fontWeight: "bold",
-                                    color: "#15B867"
-                                }}>: PAID</Text></View>
-                        </View>
-                    </Card>
+                    })}
 
                     <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
                     </View>

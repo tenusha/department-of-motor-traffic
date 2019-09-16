@@ -49,7 +49,7 @@ export default class OngoingNumbers extends React.Component {
                 <Image source={item.img} style={styles.itemImage}/>
                 <Text style={styles.itemText}>{item.key}</Text>
                 {/*<Text>The next ongoing number is:</Text>*/}
-                <Text style={styles.itemLicenceNo}>{item.licenceNo}</Text>
+                <Text style={styles.itemLicenceNo}>{item.licNo}</Text>
             </View>
         )
     };

@@ -3,6 +3,10 @@ const express = require('express')
 const app = express()
 const revenue_license = require('./routers/revenue_license')
 const user_vehicles = require('./routers/user_vehicles')
+const slvehicle_details = require('./routers/slvehicle_details')
+const fine_details = require('./routers/fine_details')
+const mongoose = require("mongoose");
+
 
 app.use(express.json());
 app.use(function (req, res, next) {
@@ -14,6 +18,8 @@ app.use(function (req, res, next) {
 
 app.use("/revenueLicense",revenue_license)
 app.use("/users",user_vehicles)
+app.use("/slvehicles",slvehicle_details)
+app.use("/fines",fine_details)
 
 app.listen(3001, err => {
     if (err) {
