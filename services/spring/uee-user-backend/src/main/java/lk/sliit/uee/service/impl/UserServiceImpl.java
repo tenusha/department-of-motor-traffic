@@ -3,6 +3,7 @@
  */
 package lk.sliit.uee.service.impl;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
@@ -30,6 +31,14 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepository;
 	@Autowired
 	FileService fileService;
+
+	/**
+	 * This method will return User object by its id
+	 */
+	@Override
+	public List<User> getAll() {
+		return userRepository.findAll();
+	}
 
 	/**
 	 * This method will return User object by its id

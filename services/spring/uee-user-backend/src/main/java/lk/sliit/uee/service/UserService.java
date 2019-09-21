@@ -3,6 +3,8 @@
  */
 package lk.sliit.uee.service;
 
+import java.util.List;
+
 import lk.sliit.uee.domain.UserDTO;
 import lk.sliit.uee.domain.UserRegDTO;
 import lk.sliit.uee.model.User;
@@ -12,6 +14,8 @@ import lk.sliit.uee.model.User;
  * @date Aug 15, 2019
  */
 public interface UserService {
+	
+	public List<User> getAll();
 
 	public User getUserById(String id);
 

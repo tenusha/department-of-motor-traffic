@@ -6,7 +6,6 @@ const revenue_license = require('./routers/revenue_license')
 const user_vehicles = require('./routers/user_vehicles')
 const slvehicle_details = require('./routers/slvehicle_details')
 const fine_details = require('./routers/fine_details')
-const mongoose = require("mongoose");
 
 
 mongoose.connect("mongodb://localhost:27017/dmt", { useNewUrlParser: true })

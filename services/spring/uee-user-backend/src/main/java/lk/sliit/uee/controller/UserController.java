@@ -42,6 +42,17 @@ public class UserController {
 	@Autowired
 	private FileService fileService;
 
+	@GetMapping("")
+	public ResponseEntity<?> getUsers() {
+		ResponseEntity<?> responseEntity = null;
+		try {
+			responseEntity = new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
+		} catch (Exception e) {
+			responseEntity = new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+		}
+		return responseEntity;
+	}
+
 	/**
 	 * This method will save a new user in the database
 	 */
