@@ -4,7 +4,7 @@ export const formatCardNumber = (value) => {
 
 export const formatExpiryDate = (currValue) => {
     if (currValue.length === 2) {
-        return currValue += ' / '
+        return currValue += '/'
     }
     return currValue
 };

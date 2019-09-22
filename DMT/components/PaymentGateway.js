@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, View, Text, StyleSheet, ToastAndroid} from 'react-native';
+import {ScrollView, View, Text, StyleSheet, ToastAndroid, KeyboardAvoidingView} from 'react-native';
 import {Header, Icon, Button, Card} from "react-native-elements"
 import CustomTextField from "./commons/CustomTextField";
 import {formatCardNumber, formatExpiryDate} from "./functions/UitilityFunctions"
@@ -11,11 +11,6 @@ export default class PaymentGateway extends React.Component {
     };
 
     state = {
-        ownerName: '',
-        licenceNo: '',
-        referenceId: '',
-        vehicleNo: '',
-        amount: '',
         cardNo: '',
         cvvNo: '',
         expDate: '',
@@ -70,91 +65,92 @@ export default class PaymentGateway extends React.Component {
 
 
     render() {
-        const {navigation} = this.props
+        const {navigation} = this.props;
         const {navigate} = this.props.navigation;
-        const name = navigation.getParam("name", "No Name")
-        const licenseNumber = navigation.getParam("licenseNumber", "No licenseNumber")
-        const ref = navigation.getParam("ref", "No Reference")
-        const vno = navigation.getParam("vno", "No Vehicle Number")
-        const amount = navigation.getParam("amount", "No Amount")
+        const name = navigation.getParam("name", "No Name");
+        const licenseNumber = navigation.getParam("licenseNumber", "No licenseNumber");
+        const ref = navigation.getParam("ref", "No Reference");
+        const vno = navigation.getParam("vno", "No Vehicle Number");
+        const amount = navigation.getParam("amount", "No Amount");
 
         return (
-
-            <ScrollView>
-                <Header
-                    containerStyle={{
-                        backgroundColor: 'white',
-                        borderBottomColor: 'white'
-                    }}
-                    leftComponent={<Icon
-                        name={'arrow-back'}
-                        color={'black'}
-                        onPress={() => this.props.navigation.navigate("FineManagement")}
-                    />}
-                    centerComponent={{
-                        text: 'PAYMENT', style: {color: 'black', fontWeight: "bold"}
-                    }}
-                />
-                <Card>
-                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Name </Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{fontWeight: "bold"}}>: {name}</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Number </Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{fontWeight: "bold"}}>: {licenseNumber}</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Reference ID </Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text style={{fontWeight: "bold"}}>: {ref}</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Number </Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text
-                                style={{fontWeight: "bold"}}>: {vno}</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Amount </Text></View>
-                            <View style={{
-                                flex: 1,
-                                alignSelf: 'stretch'
-                            }}><Text style={{fontWeight: "bold"}}>: {amount}</Text></View>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 10}}>
-                            <CustomTextField style={styles.materialMessageTextbox}
-                                             keyboardType={'numeric'}
-                                             placeholder={'XXXX-XXXX-XXXX-XXXX'}
-                                             label={'Card Number :'}
-                                             maxLength={16}
-                                             value={this.state.cardNo}
-                                             handleChange={(value) => this.handleChange('cardNo', value)}/>
-                        </View>
-                        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                            <View style={{flex: 5, flexDirection: 'column'}}>
+            <KeyboardAvoidingView style={{flex: 5, alignItems: 'center', justifyContent: 'center'}} behavior="padding"
+                                  enabled>
+                <ScrollView>
+                    <Header
+                        containerStyle={{
+                            backgroundColor: 'white',
+                            borderBottomColor: 'white'
+                        }}
+                        leftComponent={<Icon
+                            name={'arrow-back'}
+                            color={'black'}
+                            onPress={() => this.props.navigation.navigate("FineManagement")}
+                        />}
+                        centerComponent={{
+                            text: 'PAYMENT', style: {color: 'black', fontWeight: "bold"}
+                        }}
+                    />
+                    <Card>
+                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Name </Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{fontWeight: "bold"}}>: {name}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Number </Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{fontWeight: "bold"}}>: {licenseNumber}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Reference ID </Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text style={{fontWeight: "bold"}}>: {ref}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Number </Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text
+                                    style={{fontWeight: "bold"}}>: {vno}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Amount </Text></View>
+                                <View style={{
+                                    flex: 1,
+                                    alignSelf: 'stretch'
+                                }}><Text style={{fontWeight: "bold"}}>: {amount}</Text></View>
+                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 10}}>
                                 <CustomTextField style={styles.materialMessageTextbox}
-                                                 placeholder={'12/23'}
-                                                 label={'Exp Date :'}
-                                                 value={this.state.expDate}
-                                                 handleChange={(value) => this.handleChange('expDate', value)}
-                                />
+                                                 keyboardType={'numeric'}
+                                                 placeholder={'XXXX-XXXX-XXXX-XXXX'}
+                                                 label={'Card Number :'}
+                                                 maxLength={16}
+                                                 value={this.state.cardNo}
+                                                 handleChange={(value) => this.handleChange('cardNo', value)}/>
                             </View>
-                            <View style={{flex: 1}}>
-                            </View>
+                            <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                                <View style={{flex: 5, flexDirection: 'column'}}>
+                                    <CustomTextField style={styles.materialMessageTextbox}
+                                                     placeholder={'12/23'}
+                                                     label={'Exp Date :'}
+                                                     value={this.state.expDate}
+                                                     handleChange={(value) => this.handleChange('expDate', value)}
+                                    />
+                                </View>
+                                <View style={{flex: 1}}>
+                                </View>
 
                             <View style={{flex: 5, flexDirection: 'column'}}>
                                 <CustomTextField style={styles.materialMessageTextbox}

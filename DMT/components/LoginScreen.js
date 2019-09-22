@@ -1,5 +1,5 @@
 import React from 'react';
-import {AsyncStorage, Image, ScrollView, StyleSheet, Text, ToastAndroid, View} from 'react-native';
+import {Image, StyleSheet, View, AsyncStorage, ScrollView, ToastAndroid, KeyboardAvoidingView} from 'react-native';
 import MaterialButtonPrimary1 from "./login_symbols/MaterialButtonPrimary1";
 import MaterialButtonViolet from "./login_symbols/MaterialButtonViolet";
 import MaterialCheckboxWithLabel1 from "./login_symbols/MaterialCheckboxWithLabel1";
@@ -94,7 +94,8 @@ export default class LoginScreen extends React.Component {
     render() {
         const {navigate} = this.props.navigation;
         return (
-            <>
+            <KeyboardAvoidingView style={{flex: 5, alignItems: 'center', justifyContent: 'center'}} behavior="padding"
+                                  enabled>
                 <LoginHeader navigation={this.props.navigation}/>
                 <ScrollView style={styles.root}>
                     <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 10, marginBottom: 10}}>
@@ -145,7 +146,7 @@ export default class LoginScreen extends React.Component {
                         style={{...styles.materialButtonWithVioletText1, marginBottom: 20}}
                     />
                 </ScrollView>
-            </>
+            </KeyboardAvoidingView>
         );
     }
 }
