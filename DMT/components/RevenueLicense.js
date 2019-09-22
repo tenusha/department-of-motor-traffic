@@ -77,17 +77,6 @@ export default class RevenueLicense extends React.Component {
                     title={"Vehicle Number : " + this.state.vehicle}
                     titleStyle={{fontSize: 18}}>
                     <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                        <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Issued Date </Text></View>
-                        <View style={{
-                            flex: 1,
-                            alignSelf: 'stretch'
-                        }}><Text
-                            style={{
-                                fontWeight: "bold"
-                            }}>: {this.state.License_Issued_Date}</Text></View>
-                    </View>
-                    <Text/>
-                    <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
                         <View style={{flex: 1, alignSelf: 'stretch'}}><Text>Vehicle Reg No </Text></View>
                         <View style={{
                             flex: 1,
@@ -99,17 +88,6 @@ export default class RevenueLicense extends React.Component {
                     </View>
                     <Text/>
                     <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                        <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Expiry Date </Text></View>
-                        <View style={{
-                            flex: 1,
-                            alignSelf: 'stretch'
-                        }}><Text
-                            style={{
-                                fontWeight: "bold"
-                            }}>: {this.state.License_Expiry_Date}</Text></View>
-                    </View>
-                    <Text/>
-                    <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
                         <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License No </Text></View>
                         <View style={{
                             flex: 1,
@@ -118,6 +96,28 @@ export default class RevenueLicense extends React.Component {
                             style={{
                                 fontWeight: "bold"
                             }}>: {this.state.License_No}</Text></View>
+                    </View>
+                    <Text/>
+                    <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                        <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Issued Date </Text></View>
+                        <View style={{
+                            flex: 1,
+                            alignSelf: 'stretch'
+                        }}><Text
+                            style={{
+                                fontWeight: "bold"
+                            }}>: {this.state.License_Issued_Date}</Text></View>
+                    </View>
+                    <Text/>
+                    <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
+                        <View style={{flex: 1, alignSelf: 'stretch'}}><Text>License Expiry Date </Text></View>
+                        <View style={{
+                            flex: 1,
+                            alignSelf: 'stretch'
+                        }}><Text
+                            style={{
+                                fontWeight: "bold"
+                            }}>: {this.state.License_Expiry_Date}</Text></View>
                     </View>
                 </Card>
             </View> : null
