@@ -1,8 +1,9 @@
 import React from 'react';
-import {ScrollView, View, Text, StyleSheet, ToastAndroid, KeyboardAvoidingView} from 'react-native';
+import {ScrollView, View, Text, StyleSheet, ToastAndroid, KeyboardAvoidingView, Dimensions} from 'react-native';
 import {Header, Icon, Button, Card} from "react-native-elements"
 import CustomTextField from "./commons/CustomTextField";
 import {formatCardNumber, formatExpiryDate} from "./functions/UitilityFunctions"
+import configs from "../config";
 
 
 export default class PaymentGateway extends React.Component {
@@ -152,33 +153,33 @@ export default class PaymentGateway extends React.Component {
                                 <View style={{flex: 1}}>
                                 </View>
 
-                            <View style={{flex: 5, flexDirection: 'column'}}>
-                                <CustomTextField style={styles.materialMessageTextbox}
-                                                 placeholder={'123'}
-                                                 label={'CCV :'}
-                                                 value={this.state.cvvNo}
-                                                 handleChange={(value) => this.handleChange('cvvNo', value)}/>
+                                <View style={{flex: 5, flexDirection: 'column'}}>
+                                    <CustomTextField style={styles.materialMessageTextbox}
+                                                     placeholder={'123'}
+                                                     label={'CCV :'}
+                                                     value={this.state.cvvNo}
+                                                     handleChange={(value) => this.handleChange('cvvNo', value)}/>
+                                </View>
                             </View>
                         </View>
+                        <Button
+                            buttonStyle={{
+                                backgroundColor: '#15B867',
+                                borderRadius: 15,
+                                marginLeft: 0,
+                                marginRight: 0,
+                                marginBottom: 0,
+                                borderWidth: 0
+                            }}
+                            onPress={this.handleSubmit}
+                            title='CONFIRM PAYMENT'/>
+                    </Card>
+
+                    <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
                     </View>
-                    <Button
-                        buttonStyle={{
-                            backgroundColor: '#15B867',
-                            borderRadius: 15,
-                            marginLeft: 0,
-                            marginRight: 0,
-                            marginBottom: 0,
-                            borderWidth: 0
-                        }}
-                        onPress={this.handleSubmit}
-                        title='CONFIRM PAYMENT'/>
-                </Card>
 
-                <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginBottom: 25}}>
-                </View>
-
-            </ScrollView>
-
+                </ScrollView>
+            </KeyboardAvoidingView>
         );
     }
 }
