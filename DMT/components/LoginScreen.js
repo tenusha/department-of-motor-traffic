@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, View, AsyncStorage, ScrollView, ToastAndroid} from 'react-native';
+import {Image, StyleSheet, View, AsyncStorage, ScrollView, ToastAndroid, KeyboardAvoidingView} from 'react-native';
 import MaterialButtonPrimary1 from "./login_symbols/MaterialButtonPrimary1";
 import MaterialButtonViolet from "./login_symbols/MaterialButtonViolet";
 import MaterialCheckboxWithLabel1 from "./login_symbols/MaterialCheckboxWithLabel1";
@@ -29,35 +29,35 @@ export default class LoginScreen extends React.Component {
 
     handleSubmit = async () => {
         // TODO
-       if(this.state.email && this.state.password){
-           const user = {
-               id: 1,
-               fname: "Tenusha",
-               lname: "Guruge",
-               email: "tenusha@gmail.com"
-           }
+        if (this.state.email && this.state.password) {
+            const user = {
+                id: 1,
+                fname: "Tenusha",
+                lname: "Guruge",
+                email: "tenusha@gmail.com"
+            }
 
-           const result = await AsyncStorage.setItem("dmt_user", JSON.stringify(user))
+            const result = await AsyncStorage.setItem("dmt_user", JSON.stringify(user))
 
-           registerForPushNotificationsAsync().catch(err => {
-               ToastAndroid.showWithGravityAndOffset(
-                   'notification server error!',
-                   ToastAndroid.SHORT,
-                   ToastAndroid.BOTTOM,
-                   25,
-                   100,
-               );
-           })
-           this.props.navigation.navigate("Reload")
-       }else{
-           ToastAndroid.showWithGravityAndOffset(
-               'Please fill required fields!',
-               ToastAndroid.SHORT,
-               ToastAndroid.BOTTOM,
-               25,
-               100,
-           );
-       }
+            registerForPushNotificationsAsync().catch(err => {
+                ToastAndroid.showWithGravityAndOffset(
+                    'notification server error!',
+                    ToastAndroid.SHORT,
+                    ToastAndroid.BOTTOM,
+                    25,
+                    100,
+                );
+            })
+            this.props.navigation.navigate("Reload")
+        } else {
+            ToastAndroid.showWithGravityAndOffset(
+                'Please fill required fields!',
+                ToastAndroid.SHORT,
+                ToastAndroid.BOTTOM,
+                25,
+                100,
+            );
+        }
     }
 
     handleSignUp = async () => {
@@ -71,37 +71,43 @@ export default class LoginScreen extends React.Component {
     render() {
         const {navigate} = this.props.navigation;
         return (
-            <ScrollView style={styles.root}>
-                <LoginHeader navigation={this.props.navigation}/>
-                <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 10, marginBottom: 10}}>
-                    <View style={{width: 150, height: 150, backgroundColor: configs.theme, borderRadius: 10}}>
-                        <Image source={require('../assets/icons/login_logo.png')} style={{width: 150, height: 150}}/>
+            <KeyboardAvoidingView style={{flex: 5, alignItems: 'center', justifyContent: 'center'}} behavior="padding"
+                                  enabled>
+                <ScrollView style={styles.root}>
+                    <LoginHeader navigation={this.props.navigation}/>
+                    <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 10, marginBottom: 10}}>
+                        <View style={{width: 150, height: 150, backgroundColor: configs.theme, borderRadius: 10}}>
+                            <Image source={require('../assets/icons/login_logo.png')}
+                                   style={{width: 150, height: 150}}/>
+                        </View>
                     </View>
-                </View>
-                <View style={{flexDirection: "row", width: "100%"}}>
-                    <Image source={require('../assets/icons/username.png')}
-                           style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
-                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'Email'}
-                                  value={this.state.email}
-                                  handleChange={(value) => this.handleChange('email', value)}/>
-                </View>
-                <View style={{flexDirection: "row", width: "100%"}}>
-                    <Image source={require('../assets/icons/password.png')}
-                           style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
-                    <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'Password'}
-                                  value={this.state.password}
-                                  type={'password'}
-                                  handleChange={(value) => this.handleChange('password', value)}/>
-                </View>
-                <MaterialCheckboxWithLabel1 style={styles.materialCheckboxWithLabel1} label={"Remember me"}
-                                            checked={this.state.remember} handleToggle={this.handleToggle}/>
-                <MaterialButtonPrimary1 title={'Login'} style={styles.materialButtonPrimary1} handleSubmit={this.handleSubmit}/>
-                <MaterialButtonViolet title={'Sign Up'} style={styles.materialButtonViolet} handleClick={this.handleSignUp}/>
+                    <View style={{flexDirection: "row", width: "100%"}}>
+                        <Image source={require('../assets/icons/username.png')}
+                               style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
+                        <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'Email'}
+                                      value={this.state.email}
+                                      handleChange={(value) => this.handleChange('email', value)}/>
+                    </View>
+                    <View style={{flexDirection: "row", width: "100%"}}>
+                        <Image source={require('../assets/icons/password.png')}
+                               style={{width: 24, height: 24, marginTop: 30, marginLeft: 20}}/>
+                        <LoginTextBox style={styles.materialFixedLabelTextbox} placeholder={'Password'}
+                                      value={this.state.password}
+                                      type={'password'}
+                                      handleChange={(value) => this.handleChange('password', value)}/>
+                    </View>
+                    <MaterialCheckboxWithLabel1 style={styles.materialCheckboxWithLabel1} label={"Remember me"}
+                                                checked={this.state.remember} handleToggle={this.handleToggle}/>
+                    <MaterialButtonPrimary1 title={'Login'} style={styles.materialButtonPrimary1}
+                                            handleSubmit={this.handleSubmit}/>
+                    <MaterialButtonViolet title={'Sign Up'} style={styles.materialButtonViolet}
+                                          handleClick={this.handleSignUp}/>
 
-                <MaterialButtonWithVioletText1
-                    style={styles.materialButtonWithVioletText1}
-                />
-            </ScrollView>
+                    <MaterialButtonWithVioletText1
+                        style={styles.materialButtonWithVioletText1}
+                    />
+                </ScrollView>
+            </KeyboardAvoidingView>
         );
     }
 }
