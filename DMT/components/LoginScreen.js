@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, View, AsyncStorage, ScrollView, ToastAndroid, KeyboardAvoidingView} from 'react-native';
+import {Image, StyleSheet, View, AsyncStorage, ScrollView, ToastAndroid, KeyboardAvoidingView, Text} from 'react-native';
 import MaterialButtonPrimary1 from "./login_symbols/MaterialButtonPrimary1";
 import MaterialButtonViolet from "./login_symbols/MaterialButtonViolet";
 import MaterialCheckboxWithLabel1 from "./login_symbols/MaterialCheckboxWithLabel1";
