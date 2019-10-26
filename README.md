@@ -84,6 +84,24 @@ Figure_5: home screen
 
 • Add the ability for police to view fine history of a vehicle when the vehicle number is entered.
 
+## Steps to Deploy
+
+1) Go to department-of-motor-traffic/DMT and run following commands
+```
+	> yarn install
+	> expo start
+```	
+2) Go to department-of-motor-traffic/Services/node and run following commands
+```
+	> npm install
+	> npm start
+```	
+3) Go to department-of-motor-traffic/Services/uee-user-backend and run following commands
+```
+	> mvn clean install
+	> go to /target/
+	> java -jar uee-user-backend-0.0.1-SNAPSHOT.jar
+```
 ## Copyright
 
 (C) 2019 Tenusha Guruge
