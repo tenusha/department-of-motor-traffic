@@ -8,6 +8,10 @@ export function getRevenueLicenseDetails(vehicle) {
     return callGet(config.dmtUrl + '/revenueLicense/' + vehicle);
 }
 
+export function getUserVehicleDetails(vehicle) {
+    return callGet(config.dmtUrl + '/users/' + vehicle);
+}
+
 export function getUserVehicles(uid) {
     return callGet(config.dmtUrl + '/users/' + uid + "/vehicles");
 }
@@ -18,6 +22,14 @@ export function removeUserVehicle(uid, vno) {
 
 export function addUserVehicle(uid,body) {
     return callPost(config.dmtUrl + '/users/' + uid + "/vehicles/", body);
+}
+
+export function loginUser(body) {
+    return callPost(config.user_backend + '/users/login', body);
+}
+
+export function registerUser(body) {
+    return callPost(config.user_backend + '/users', body);
 }
 
 const callGet = (url) => {

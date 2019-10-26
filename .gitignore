@@ -62,3 +62,6 @@ typings/
 
 *.lock
 /services/node/package-lock.json
+/DMT/.idea/
+.idea/
+.scannerwork/
