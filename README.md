@@ -1,2 +1,2 @@
 # Department of Motor Traffic
-Department of Motor Traffic (DMT) - Mobile App
+Department of Motor Traffic (DMT) - Mobile Application
